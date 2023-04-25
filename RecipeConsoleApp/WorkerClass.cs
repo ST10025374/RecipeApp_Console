@@ -21,6 +21,7 @@ namespace RecipeConsoleApp
         /// Call DisplayMenu and GetMenuOption method 
         /// Show Menu and get user menu input option
         /// Show Heading
+        /// Continue looping/calling menu and asking for input till user selects exit option from menu
         /// </summary>
         public void StartWorker()
         {
@@ -28,7 +29,11 @@ namespace RecipeConsoleApp
                               "\n |       Welcome to Recipe App        |\n" +
                               "\n --------------------------------------\n");
             
-            DisplayMenu();
+            do
+            {
+                DisplayMenu();
+                GetMenuOption();
+            } while (true);
         }
 
         //--------------------------------------------------------------------------------------------------//
@@ -37,7 +42,7 @@ namespace RecipeConsoleApp
         /// </summary>
         public void DisplayMenu()
         {
-            Console.WriteLine("  -------------------------------------\n" +
+            Console.WriteLine("\n  -------------------------------------\n" +
                               "  | Choose an option from menu bellow |\n" +
                               "  |     (1) Store Recipe              |\n" +
                               "  |     (2) Display Recipe            |\n" +
@@ -59,6 +64,8 @@ namespace RecipeConsoleApp
         /// <summary>
         /// Get option input menu from user
         /// Call methods from selected options
+        /// If user enters invalid input loop until user types correct input
+        /// Only range from 1 to 6 is valid otherwise it will continue to loop because of if statement 
         /// </summary>
         public void GetMenuOption()
         {      
@@ -113,7 +120,6 @@ namespace RecipeConsoleApp
                     //Analyse if needed//
                     break;
             }
-
         }
     }
 }
