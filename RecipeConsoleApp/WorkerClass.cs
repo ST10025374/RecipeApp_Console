@@ -16,7 +16,22 @@ namespace RecipeConsoleApp
 
         }
 
-        //-----------------------------------------------------------------//
+        //--------------------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Call DisplayMenu and GetMenuOption method 
+        /// Show Menu and get user menu input option
+        /// Show Heading
+        /// </summary>
+        public void StartWorker()
+        {
+            Console.WriteLine("\n --------------------------------------" +
+                              "\n |       Welcome to Recipe App        |\n" +
+                              "\n --------------------------------------\n");
+            
+            DisplayMenu();
+        }
+
+        //--------------------------------------------------------------------------------------------------//
         /// <summary>
         /// Display Menu to user
         /// </summary>
@@ -30,57 +45,72 @@ namespace RecipeConsoleApp
                               "  |     (4) Delete Recipe             |\n" +
                               "  |     (5) Clear Screen              |\n" +
                               "  |     (6) Terminate and Exit        |\n" +
-                              "  -------------------------------------");
+                              "  -------------------------------------\n" +
+                              "  Type the number next to the option desired");
             //Chhange background Color Add Sounds
             // Type Recipe Name --> Scale 0.5 half, 2 double, 3 triple, Reset --> Display
+            // In display recipe show all recipes stored and ask user to select by typing name or selecting
             //Type Recipe Name --> Display info that Recipe was succesfully deleted
             //Test
+            //Insert input validation to options to diplay messages if there is no recipes still in system
         }
 
-        //----------------------------------------------------------------------------//
+        //--------------------------------------------------------------------------------------------------//
         /// <summary>
         /// Get option input menu from user
-        /// Call menu method to be displayed
+        /// Call methods from selected options
         /// </summary>
-        public void MenuOption()
-        {//Insert Input validation
-         //If Input different ask user to enter again
-            Console.WriteLine("\n --------------------------------------" +
-                              "\n |       Welcome to Recipe App        |\n" +
-                              "\n --------------------------------------\n");
+        public void GetMenuOption()
+        {      
+            Boolean Valid = true;
+            int Option = 0;
 
-            DisplayMenu();
+            do
+            {
+                try
+                {
+                    Option = int.Parse(Console.ReadLine());
 
-            var Option = string.Empty;
+                    if (Option < 1 || Option > 6)
+                    {
+                        Valid = false;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Valid = false;
+                    Console.WriteLine("Sorry, you did not enter a valid option. Please try again.");
+                }
+            } while (!Valid);
 
             switch (Option)
             {
-                case "1":
+                case 1:
 
                     break;
 
-                case "2":
+                case 2:
 
                     break;
 
-                case "3":
+                case 3:
 
                     break;
 
-                case "4":
+                case 4:
 
                     break;
 
-                case "5":
+                case 5:
 
                     break;
 
-                case "6":
+                case 6:
 
                     break;
 
                 default:
-
+                    //Analyse if needed//
                     break;
             }
 
