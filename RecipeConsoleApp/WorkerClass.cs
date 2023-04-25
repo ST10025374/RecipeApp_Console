@@ -22,18 +22,19 @@ namespace RecipeConsoleApp
         /// </summary>
         public void DisplayMenu()
         {
-            Console.WriteLine("\nChoose an option from Menu bellow");
-            Console.WriteLine("(1) Store Recipe");
-            Console.WriteLine("(2) Display Recipe");
-            Console.WriteLine("(3) Scale Up Recipe");
+            Console.WriteLine("  -------------------------------------\n" +
+                              "  | Choose an option from menu bellow |\n" +
+                              "  |     (1) Store Recipe              |\n" +
+                              "  |     (2) Display Recipe            |\n" +
+                              "  |     (3) Scale Up Recipe           |\n" +
+                              "  |     (4) Delete Recipe             |\n" +
+                              "  |     (5) Clear Screen              |\n" +
+                              "  |     (6) Terminate and Exit        |\n" +
+                              "  -------------------------------------");
+            //Chhange background Color Add Sounds
             // Type Recipe Name --> Scale 0.5 half, 2 double, 3 triple, Reset --> Display
-            Console.WriteLine("(4) Delete Recipe");
             //Type Recipe Name --> Display info that Recipe was succesfully deleted
             //Test
-            Console.WriteLine("(5) Clear Screen");
-            Console.WriteLine("(6) Terminate and Exit");
-            Console.WriteLine("----------------------------------");
-            //Chhange background Color Add Sounds
         }
 
         //----------------------------------------------------------------------------//
@@ -44,9 +45,9 @@ namespace RecipeConsoleApp
         public void MenuOption()
         {//Insert Input validation
          //If Input different ask user to enter again
-            Console.WriteLine("\n-------------------------------------" +
-                              "------- Welcome to Recipe App -------\n" +
-                              "\n-------------------------------------");
+            Console.WriteLine("\n --------------------------------------" +
+                              "\n |       Welcome to Recipe App        |\n" +
+                              "\n --------------------------------------\n");
 
             DisplayMenu();
 

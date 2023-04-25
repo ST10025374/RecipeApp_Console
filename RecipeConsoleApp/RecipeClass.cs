@@ -239,7 +239,7 @@ namespace RecipeConsoleApp
         public void GetStepDescription()
         {
             Boolean Valid = true;
-
+            //try to loop for amount of steps including numeration when asking user for input
             do
             {
                 try
@@ -260,8 +260,9 @@ namespace RecipeConsoleApp
         /// Ask User for Ingredients Details calling methods to get Inputs
         /// </summary>
         public void GetIngredientDetails()
-        {//----------------> try input validation Try & Catch <-------------//
-            Console.WriteLine("-- Type Ingredient Details --");
+        {
+            Console.WriteLine("\nType Ingredient Details" +
+                              "\n-----------------------\n");
             GetIngredientName();
             GetUnitOfMeasurement();
             GetIngredientQuantity();
@@ -276,24 +277,34 @@ namespace RecipeConsoleApp
         /// </summary>
         public void GetRecipe()
         {
-            Console.WriteLine("\n-- Enter Recipe information bellow --");//-----> Add Color to text <-----//
+            //Recipe must be stored in array (object array)
+            //Ingredient also in separate array (object array or 2D)
+            //And this array store in recipe object
+            //Steps also mst be stored in array (string 1D array)
+
+            Console.WriteLine("\nEnter Recipe information bellow" +
+                              "\n-------------------------------\n");
+            //-----> Add Color to text <-----//
             
             GetRecipeName();
             GetNumberOfIngredients();
 
             for (int i = 0; i < this.NumberOfIngredients; i++)
             {
-                //-- Add ingredient to object to be stored in Array --//
-                Console.WriteLine("-- Ingredient " + (i + 1) + " --");
+                //-- Add ingredient details to object to be stored in Array --//
+                Console.WriteLine("\nIngredient " + (i + 1) + 
+                                  "\n------------\n");
                 GetIngredientDetails();
             }
 
-            Console.WriteLine("-- Type number of Steps --");
+            Console.WriteLine("\nType number of Steps" +
+                              "\n--------------------");
+            
             GetNumberOfSteps();
 
             for (int i = 0; i < this.NumberOfSteps; i++)
             {
-                Console.WriteLine("Step " + (i + 1));
+                Console.WriteLine("\nStep " + (i + 1));
                 GetStepDescription();
                 // ---> Store In Array <-----//
             }
