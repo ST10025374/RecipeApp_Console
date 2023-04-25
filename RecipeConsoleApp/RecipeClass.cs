@@ -8,18 +8,7 @@ using System.Xml.Schema;
 namespace RecipeConsoleApp
 {
     public class RecipeClass
-    {    /// Testing GitHub
-         /// <summary>
-         /// Array to Store Recipe Objects
-         /// Can store Max of 10 Recipes
-         /// </summary>
-        RecipeClass[] RecipeArray = new RecipeClass[10];
-
-        /// <summary>
-        /// Array to Store Max of 20 Ingredients
-        /// </summary>
-        RecipeClass[] IngredientArray = new RecipeClass[10];
-
+    {    
         /// <summary>
         /// Store recipe name
         /// </summary>
@@ -268,7 +257,7 @@ namespace RecipeConsoleApp
 
         //---------------------------------------------------------------------------------------//
         /// <summary>
-        /// Ask User for Ingredients Details and call other methods for Input 
+        /// Ask User for Ingredients Details calling methods to get Inputs
         /// </summary>
         public void GetIngredientDetails()
         {//----------------> try input validation Try & Catch <-------------//
@@ -280,18 +269,20 @@ namespace RecipeConsoleApp
 
         //---------------------------------------------------------------------------------------//
         /// <summary>
-        /// Call methods 
-        /// Ask user for Number of Ingredients and loop calling method to get all details
-        /// Loop for amount of steps keep asking for description
+        /// Method that calls methods 
+        /// Asks user for Number of Ingredients and loop calling method to get all details
+        /// Loop for amount of steps and keeps asking for description
         /// </summary>
         public void GetRecipe()
         {
             Console.WriteLine("-- Enter Recipe information bellow --");//-----> Add Color to text <-----//
+            
+            GetRecipeName();
             GetNumberOfIngredients();
 
             for (int i = 0; i < this.NumberOfIngredients; i++)
             {//----------------> try Try & Catch <-------------//
-                var Ingredient = new RecipeClass();
+                //var Ingredient = new RecipeClass();
                 Console.WriteLine("-- Ingredient " + i + " --");
                 GetIngredientDetails();
                 IngredientArray[i].Equals(Ingredient);
