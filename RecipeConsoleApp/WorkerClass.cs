@@ -22,7 +22,7 @@ namespace RecipeConsoleApp
         /// </summary>
         public void DisplayMenu()
         {
-            Console.WriteLine("Choose an option from Menu bellow");
+            Console.WriteLine("\nChoose an option from Menu bellow");
             Console.WriteLine("(1) Store Recipe");
             Console.WriteLine("(2) Display Recipe");
             Console.WriteLine("(3) Scale Up Recipe");
@@ -44,7 +44,9 @@ namespace RecipeConsoleApp
         public void MenuOption()
         {//Insert Input validation
          //If Input different ask user to enter again
-            Console.WriteLine("----- Welcome to Recipe App -----");
+            Console.WriteLine("\n-------------------------------------" +
+                              "------- Welcome to Recipe App -------\n" +
+                              "\n-------------------------------------");
 
             DisplayMenu();
 

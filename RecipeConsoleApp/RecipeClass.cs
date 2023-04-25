@@ -270,23 +270,22 @@ namespace RecipeConsoleApp
         //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Method that calls methods 
-        /// Asks user for Number of Ingredients and loop calling method to get all details
+        /// Asks user for Number of Ingredients and call method to get an ingredient detail
+        /// Will loop for the number of ingredient specified
         /// Loop for amount of steps and keeps asking for description
         /// </summary>
         public void GetRecipe()
         {
-            Console.WriteLine("-- Enter Recipe information bellow --");//-----> Add Color to text <-----//
+            Console.WriteLine("\n-- Enter Recipe information bellow --");//-----> Add Color to text <-----//
             
             GetRecipeName();
             GetNumberOfIngredients();
 
             for (int i = 0; i < this.NumberOfIngredients; i++)
-            {//----------------> try Try & Catch <-------------//
-                //var Ingredient = new RecipeClass();
-                Console.WriteLine("-- Ingredient " + i + " --");
+            {
+                //-- Add ingredient to object to be stored in Array --//
+                Console.WriteLine("-- Ingredient " + (i + 1) + " --");
                 GetIngredientDetails();
-                IngredientArray[i].Equals(Ingredient);
-                // Try another way without object
             }
 
             Console.WriteLine("-- Type number of Steps --");
