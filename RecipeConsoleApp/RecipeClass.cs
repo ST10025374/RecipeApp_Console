@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace RecipeConsoleApp
 {
@@ -20,7 +21,12 @@ namespace RecipeConsoleApp
         RecipeClass[] IngredientArray = new RecipeClass[10];
 
         /// <summary>
-        /// Store the nmber of ingredients of each recipe
+        /// Store recipe name
+        /// </summary>
+        private string RecipeName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Store the number of ingredients of each recipe
         /// </summary>
         private int NumberOfIngredients { get; set; } = 0;
 
@@ -49,7 +55,7 @@ namespace RecipeConsoleApp
         /// </summary>
         private string StepDescription { get; set; } = string.Empty;
 
-        //-------------------------------------------------------------------------------------------//
+        //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Default Constructor
         /// </summary>
@@ -58,77 +64,209 @@ namespace RecipeConsoleApp
 
         }
 
-        //-------------------------------------------------------------------------------------------//
+        //---------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Gets recipe name from user
+        /// Keep asking till correct input requested is added
+        /// In case incorrect input is added will display error message
+        /// </summary>
+        public void GetRecipeName()
+        {
+            Boolean Valid = true;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Enter the name of the recipe: ");
+                    this.RecipeName = Console.ReadLine();
+                }
+                catch (FormatException)
+                {
+                    Valid = false;
+                    Console.WriteLine("Sorry, you did not enter a valid name. Please try again.");
+                }
+            } while (!Valid);
+        }
+
+        //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Ask User for Number of Ingredients in Recipe and Store Input
+        /// Keep asking till correct input requested is added
+        /// In case incorrect input is added will display error message
         /// </summary>
         /// <param name="NumberOfIngredients"></param>
         public void GetNumberOfIngredients()
         {
+            Boolean Valid = true;
 
+            do
+            {
                 try
                 {
                     Console.WriteLine("Enter the amount of ingredients in the recipe: ");
-                    this.NumberOfIngredients = Convert.ToInt16(Console.ReadLine());
+                    this.NumberOfIngredients = int.Parse(Console.ReadLine()); 
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("Sorry, you did not enter a valid integer. Please try again.");
+                    Valid = false;
+                    Console.WriteLine("Sorry, you did not enter a valid number. Please try again.");
                 }
-            
+            } while (!Valid);
         }
 
-        //-------------------------------------------------------------------------------------------//
+        //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Ask User for Ingredient Name in Recipe and Store Input
+        /// Keep asking till correct input requested is added
+        /// In case incorrect input is added will display error message
         /// </summary>
         public void GetIngredientName()
         {
-            Console.WriteLine("Enter the name of the ingredient: ");
-            this.IngredientName = Console.ReadLine();
+            Boolean Valid = true;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Enter the name of the ingredient: ");
+                    this.IngredientName = Console.ReadLine();
+                }
+                catch (FormatException)
+                {
+                    Valid = false;
+                    Console.WriteLine("Sorry, you did not enter a valid name. Please try again.");
+                }
+            } while (!Valid);
         }
 
-        //-------------------------------------------------------------------------------------------//
+        //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Ask User for Ingredient Quantity and Store Input
+        /// Keep asking till correct input requested is added
+        /// In case incorrect input is added will display error message
         /// </summary>
         public void GetIngredientQuantity()
         {
-            Console.WriteLine("Enter the quantity of the ingredient: ");
-            this.IngredientQuantity = Convert.ToDouble(Console.ReadLine());
+            Boolean Valid = true;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Enter the quantity of the ingredient: ");
+                    this.IngredientQuantity = double.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Valid = false;
+                    Console.WriteLine("Sorry, you did not enter a valid number. Please try again.");
+                }
+            } while (!Valid);
         }
 
-        //-------------------------------------------------------------------------------------------//
+        //---------------------------------------------------------------------------------------//
         /// <summary>
-        /// Ask User for Unit of Measurement and Store
+        /// Ask User for Unit of Measurement and Record
+        /// User can select from 3 options
+        /// Method stores string of unit of measurement selected by user
+        /// Keep asking till correct input requested is added
+        /// In case incorrect input is added will display error message
         /// </summary>
         public void GetUnitOfMeasurement()
         {
-            Console.WriteLine("Enter the unit of measurement: ");
-            this.UnitOfMeasurement = Console.ReadLine();
+            Boolean Valid = true;
+
+            int Option = 0;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Select the unit of measurement by typing the option number: \n" +
+                              "[1] Gram (g) \n" +
+                              "[2] Tablespoon (tbsp) \n" +
+                              "[3] Cup (c)");
+
+                    Option = int.Parse(Console.ReadLine());
+
+                    if(Option < 1 || Option > 3)
+                    {
+                        Valid = false;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Valid = false;
+                    Console.WriteLine("Sorry, you did not select a valid option. Please try again.");
+                }
+            } while (!Valid);
+          
+            switch (Option)
+            {
+                case 1:
+                    this.UnitOfMeasurement = "grams";
+                    break;                  
+                case 2:
+                    this.UnitOfMeasurement = "tablespoons";
+                    break;
+                case 3:
+                    this.UnitOfMeasurement = "cups";
+                    break;
+            }         
         }
 
-        //-------------------------------------------------------------------------------------------//
+        //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Ask User for recipe steps amount
+        /// Keep asking till correct input requested is added
+        /// In case incorrect input is added will display error message
         /// </summary>
         public void GetNumberOfSteps()
         {
-            Console.WriteLine("Enter the amount of steps in the recipe: ");
-            this.NumberOfSteps = Convert.ToInt16(Console.ReadLine());
+            Boolean Valid = true;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Enter the amount of steps in the recipe: ");
+                    this.NumberOfSteps = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Valid = false;
+                    Console.WriteLine("Sorry, you did not enter a valid number. Please try again.");
+                }
+            } while (!Valid);
         }
 
-        //-------------------------------------------------------------------------------------------//
+        //---------------------------------------------------------------------------------------//
         /// <summary>
-        /// Ask User step description
+        /// Ask User for step description
+        /// Keep asking till correct input requested is added
+        /// In case incorrect input is added will display error message
         /// </summary>
         public void GetStepDescription()
         {
-            Console.WriteLine("Enter the description of step: ");
-            this.StepDescription = Console.ReadLine();
+            Boolean Valid = true;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Enter the description of step: ");
+                    this.StepDescription = Console.ReadLine();
+                }
+                catch (FormatException)
+                {
+                    Valid = false;
+                    Console.WriteLine("Sorry, you did not enter a valid description. Please try again.");
+                }
+            } while (!Valid);   
         }
 
-        //-------------------------------------------------------------------------------------------//
+        //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Ask User for Ingredients Details and call other methods for Input 
         /// </summary>
@@ -140,7 +278,7 @@ namespace RecipeConsoleApp
             GetIngredientQuantity();
         }
 
-        //-------------------------------------------------------------------------------------------//
+        //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Call methods 
         /// Ask user for Number of Ingredients and loop calling method to get all details
@@ -171,7 +309,7 @@ namespace RecipeConsoleApp
             }
         }
 
-        //-----------------------------------------------------------------------------------//
+        //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Calls method that gets user Inputs and Stores Object In Array 
         /// </summary>
