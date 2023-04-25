@@ -65,8 +65,17 @@ namespace RecipeConsoleApp
         /// <param name="NumberOfIngredients"></param>
         public void GetNumberOfIngredients()
         {
-            Console.WriteLine("Enter the amount of ingredients in the recipe: ");
-            this.NumberOfIngredients = Convert.ToInt16(Console.ReadLine());
+
+                try
+                {
+                    Console.WriteLine("Enter the amount of ingredients in the recipe: ");
+                    this.NumberOfIngredients = Convert.ToInt16(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Sorry, you did not enter a valid integer. Please try again.");
+                }
+            
         }
 
         //-------------------------------------------------------------------------------------------//
