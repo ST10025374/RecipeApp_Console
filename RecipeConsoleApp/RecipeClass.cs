@@ -12,17 +12,17 @@ namespace RecipeConsoleApp
         /// <summary>
         /// Store recipe name
         /// </summary>
-        private string RecipeName { get; set; } = string.Empty;
+        public string RecipeName { get; set; } = string.Empty;
 
         /// <summary>
         /// Store the recipe number of steps
         /// </summary>
-        private int NumberOfSteps { get; set; } = 0;
+        public int NumberOfSteps { get; set; } = 0;
 
         /// <summary>
         /// Will store a description of each step in Recipe
         /// </summary>
-        private string StepDescription { get; set; } = string.Empty;
+        public string StepDescription { get; set; } = string.Empty;
         
         /// <summary>
         /// Instance of Ingredients class
