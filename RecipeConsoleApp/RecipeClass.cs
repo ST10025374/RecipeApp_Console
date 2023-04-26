@@ -32,7 +32,17 @@ namespace RecipeConsoleApp
         /// <summary>
         /// Array to store details of each ingredient in recipe
         /// </summary>
-        public List<IngredientsClass> IngredientsArray = new List<IngredientsClass>(); 
+        public List<IngredientsClass> IngredientsArray = new List<IngredientsClass>();
+        
+        /// <summary>
+        /// Array to store each recipe 
+        /// </summary>
+        public List<RecipeClass> RecipeArray = new List<RecipeClass>();
+
+        /// <summary>
+        /// Array to store each step description
+        /// </summary>
+        public string[] StepArray = new string[50];
 
         //---------------------------------------------------------------------------------------//
         /// <summary>
@@ -123,7 +133,7 @@ namespace RecipeConsoleApp
         /// Method that calls methods 
         /// Asks user for Number of Ingredients and call method to get an ingredient detail
         /// Will loop for the number of ingredient specified
-        /// Loop for amount of steps and keeps asking for description
+        /// Loop for amount of steps and keeps asking for description and store in StepArray
         /// </summary>
         public void GetRecipe()
         {
@@ -141,12 +151,16 @@ namespace RecipeConsoleApp
 
             for (int i = 0; i < Ingredients.NumberOfIngredients; i++)
             {
-                IngredientsClass NewIngredient = new IngredientsClass();
+                var NewIngredient = new IngredientsClass();
 
                 Console.WriteLine("\nIngredient " + (i + 1) + 
                                   "\n------------\n");
 
                 NewIngredient.GetIngredientDetails();
+                NewIngredient.NumberOfIngredients = Ingredients.NumberOfIngredients;
+                NewIngredient.IngredientName = Ingredients.IngredientName;
+                NewIngredient.IngredientQuantity = Ingredients.IngredientQuantity;
+                NewIngredient.UnitOfMeasurement = Ingredients.UnitOfMeasurement;
 
                 IngredientsArray.Add(NewIngredient);
             }
@@ -160,22 +174,27 @@ namespace RecipeConsoleApp
             {
                 Console.WriteLine("\nStep " + (i + 1));
                 GetStepDescription();
-                // ---> Store In Array <-----//
+                StepArray[i] = this.StepDescription;
             }
         }
 
         //---------------------------------------------------------------------------------------//
         /// <summary>
-        /// Calls method that gets user Inputs and Stores Object In Array 
+        /// Calls method that gets user Inputs and Stores Object In RecipeArray
+        /// Stores Ingredient and step array in recipe array
         /// </summary>
         public void StoreRecipeData()
         {
-            var Recipe = new RecipeClass();
+            var NewRecipe = new RecipeClass();
 
             GetRecipe();
-            //--------> Look For Solution <--------//
-            RecipeArray[0].Equals(Recipe);
-            //var unit RecipeArray[0].UnitOfMeasurement;
+
+            NewRecipe.RecipeName = this.RecipeName;
+            NewRecipe.NumberOfSteps = this.NumberOfSteps;
+            NewRecipe.StepArray = this.StepArray;
+            NewRecipe.IngredientsArray = this.IngredientsArray;
+
+            RecipeArray.Add(NewRecipe);
         }
 
     }
