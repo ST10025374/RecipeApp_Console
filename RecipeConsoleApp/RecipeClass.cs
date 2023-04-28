@@ -8,7 +8,7 @@ using System.Xml.Schema;
 namespace RecipeConsoleApp
 {
     public class RecipeClass
-    {    
+    {
         /// <summary>
         /// Store recipe name
         /// </summary>
@@ -23,7 +23,7 @@ namespace RecipeConsoleApp
         /// Will store a description of each step in Recipe
         /// </summary>
         public string StepDescription { get; set; } = string.Empty;
-        
+
         /// <summary>
         /// Instance of Ingredients class
         /// </summary>
@@ -33,7 +33,7 @@ namespace RecipeConsoleApp
         /// Array to store details of each ingredient in recipe
         /// </summary>
         public List<IngredientsClass> IngredientsArray = new List<IngredientsClass>();
-        
+
         /// <summary>
         /// Array to store each recipe 
         /// </summary>
@@ -67,6 +67,7 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Valid = true;
                     Console.WriteLine("Enter the name of the recipe: ");
                     this.RecipeName = Console.ReadLine();
                 }
@@ -75,9 +76,9 @@ namespace RecipeConsoleApp
                     Valid = false;
                     Console.WriteLine("Sorry, you did not enter a valid name. Please try again.");
                 }
-            } while (!Valid);
+            } while (Valid.Equals(false));
         }
-      
+
         //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Ask User for recipe steps amount
@@ -92,6 +93,7 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Valid = true;
                     Console.WriteLine("Enter the amount of steps in the recipe: ");
                     this.NumberOfSteps = int.Parse(Console.ReadLine());
                 }
@@ -100,7 +102,7 @@ namespace RecipeConsoleApp
                     Valid = false;
                     Console.WriteLine("Sorry, you did not enter a valid number. Please try again.");
                 }
-            } while (!Valid);
+            } while (Valid.Equals(false));
         }
 
         //---------------------------------------------------------------------------------------//
@@ -117,6 +119,7 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Valid = true;
                     Console.WriteLine("Enter the description of step: ");
                     this.StepDescription = Console.ReadLine();
                 }
@@ -125,7 +128,7 @@ namespace RecipeConsoleApp
                     Valid = false;
                     Console.WriteLine("Sorry, you did not enter a valid description. Please try again.");
                 }
-            } while (!Valid);   
+            } while (Valid.Equals(false));
         }
 
         //---------------------------------------------------------------------------------------//
@@ -140,7 +143,7 @@ namespace RecipeConsoleApp
             Console.WriteLine("\nEnter Recipe information bellow" +
                               "\n-------------------------------\n");
             //-----> Add Color to text <-----//
-            
+
             GetRecipeName();
             Ingredients.GetNumberOfIngredients();
 
@@ -148,7 +151,7 @@ namespace RecipeConsoleApp
             {
                 var NewIngredient = new IngredientsClass();
 
-                Console.WriteLine("\nIngredient " + (i + 1) + 
+                Console.WriteLine("\nIngredient " + (i + 1) +
                                   "\n------------\n");
 
                 NewIngredient.GetIngredientDetails();
@@ -162,7 +165,7 @@ namespace RecipeConsoleApp
 
             Console.WriteLine("\nType number of Steps" +
                               "\n--------------------");
-            
+
             GetNumberOfSteps();
 
             for (int i = 0; i < this.NumberOfSteps; i++)
@@ -211,6 +214,7 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Valid = true;
                     Console.WriteLine("\nType option number from above recipes to diplay: ");
                     Option = int.Parse(Console.ReadLine());
                 }
@@ -219,7 +223,7 @@ namespace RecipeConsoleApp
                     Valid = false;
                     Console.WriteLine("Sorry, you did not enter a valid option. Please try again.");
                 }
-            } while (!Valid);
+            } while (Valid.Equals(false));
 
             DisplayRecipeName(Option);
             DisplayIngredientData(Option);
@@ -232,12 +236,12 @@ namespace RecipeConsoleApp
         /// Loops thru step array and displays
         /// </summary>
         public void DisplayRecipeSteps(int Option)
-        {         
+        {
             int StepArrayLength = this.RecipeArray[Option].StepArray.Length;
-                 
+
             for (int i = 0; i < StepArrayLength; i++)
             {
-                Console.WriteLine("Step " + (i + 1) + " :" 
+                Console.WriteLine("Step " + (i + 1) + " :"
                     + this.RecipeArray[Option].StepArray[i]);
             }
         }
@@ -249,8 +253,8 @@ namespace RecipeConsoleApp
         /// </summary>
         public void DisplayRecipeName(int Number)
         {
-            Console.WriteLine(" (" + Number + ") Recipe name :" 
-                + this.RecipeArray[Number].RecipeName );
+            Console.WriteLine(" (" + Number + ") Recipe name :"
+                + this.RecipeArray[Number].RecipeName);
         }
 
         //---------------------------------------------------------------------------------------//
@@ -266,11 +270,11 @@ namespace RecipeConsoleApp
 
             for (int i = 0; i < this.RecipeArray[Option].IngredientsArray.Count; i++)
             {
-                Console.WriteLine("Ingredient name " + (i + 1) + ": " 
+                Console.WriteLine("Ingredient name " + (i + 1) + ": "
                     + this.RecipeArray[Option].IngredientsArray[i].IngredientName);
                 Console.WriteLine("Ingredient Quantity: "
-                    + this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity 
-                    + " " + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement 
+                    + this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity
+                    + " " + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement
                     + "\n");
             }
         }
@@ -293,4 +297,5 @@ namespace RecipeConsoleApp
     }
 }
 //---------------------------------------------------------< END >-----------------------------------------------------//
+
 

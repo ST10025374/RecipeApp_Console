@@ -32,9 +32,9 @@ namespace RecipeConsoleApp
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public IngredientsClass() 
-        { 
-        
+        public IngredientsClass()
+        {
+
         }
 
         //---------------------------------------------------------------------------------------//
@@ -52,6 +52,7 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Valid = true;
                     Console.WriteLine("Enter the amount of ingredients in the recipe: ");
                     this.NumberOfIngredients = int.Parse(Console.ReadLine());
                 }
@@ -77,6 +78,7 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Valid = true;
                     Console.WriteLine("Enter the name of the ingredient: ");
                     this.IngredientName = Console.ReadLine();
                 }
@@ -85,7 +87,7 @@ namespace RecipeConsoleApp
                     Valid = false;
                     Console.WriteLine("Sorry, you did not enter a valid name. Please try again.");
                 }
-            } while (!Valid);
+            } while (Valid.Equals(false));
         }
 
         //---------------------------------------------------------------------------------------//
@@ -102,6 +104,7 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Valid = true;
                     Console.WriteLine("Enter the quantity of the ingredient: ");
                     this.IngredientQuantity = double.Parse(Console.ReadLine());
                 }
@@ -110,7 +113,7 @@ namespace RecipeConsoleApp
                     Valid = false;
                     Console.WriteLine("Sorry, you did not enter a valid number. Please try again.");
                 }
-            } while (!Valid);
+            } while (Valid.Equals(false));
         }
 
         //---------------------------------------------------------------------------------------//
@@ -131,6 +134,7 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Valid = true;
                     Console.WriteLine("Select the unit of measurement by typing the option number: \n" +
                               "[1] Gram (g) \n" +
                               "[2] Tablespoon (tbsp) \n" +
@@ -148,7 +152,7 @@ namespace RecipeConsoleApp
                     Valid = false;
                     Console.WriteLine("Sorry, you did not select a valid option. Please try again.");
                 }
-            } while (!Valid);
+            } while (Valid.Equals(false));
 
             switch (Option)
             {

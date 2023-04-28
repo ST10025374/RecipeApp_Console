@@ -33,7 +33,7 @@ namespace RecipeConsoleApp
             Console.WriteLine("\n --------------------------------------" +
                               "\n |       Welcome to Recipe App        |\n" +
                               " --------------------------------------\n");
-            
+
             do
             {
                 DisplayMenu();
@@ -73,7 +73,7 @@ namespace RecipeConsoleApp
         /// Only range from 1 to 6 is valid otherwise it will continue to loop because of if statement 
         /// </summary>
         public void GetMenuOption()
-        {      
+        {
             Boolean Valid = true;
             int Option = 0;
 
@@ -81,6 +81,7 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Valid = true;
                     Option = int.Parse(Console.ReadLine());
 
                     if (Option < 1 || Option > 6)
@@ -93,16 +94,16 @@ namespace RecipeConsoleApp
                     Valid = false;
                     Console.WriteLine("Sorry, you did not enter a valid option. Please try again.");
                 }
-            } while (!Valid);
+            } while (Valid.Equals(false));
 
             switch (Option)
             {
                 case 1:
-                        Recipe.StoreRecipeData();
+                    Recipe.StoreRecipeData();
                     break;
 
                 case 2:
-                        Recipe.DisplayRecipeData();
+                    Recipe.DisplayRecipeData();
                     break;
 
                 case 3:
