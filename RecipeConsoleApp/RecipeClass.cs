@@ -121,7 +121,7 @@ namespace RecipeConsoleApp
 
                 NewStep.GetStepDescription();
 
-                Recipe.StepArray.Equals(NewStep);
+                Recipe.StepArray.Add(NewStep);
             }
             
             this.RecipeArray.Add(Recipe);
@@ -172,10 +172,13 @@ namespace RecipeConsoleApp
         {
             int StepArrayLength = this.RecipeArray[Option].StepArray.Count;
 
+            Console.WriteLine("\nRecipe Steps" +
+                              "\n------------\n");
+
             for (int i = 0; i < StepArrayLength; i++)
             {
                 Console.WriteLine("Step " + (i + 1) + " :"
-                    + this.RecipeArray[Option].StepArray[i]);
+                    + this.RecipeArray[Option].StepArray[i].StepDescription);
             }
         }
 
