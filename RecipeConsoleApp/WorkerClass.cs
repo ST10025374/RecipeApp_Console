@@ -8,6 +8,10 @@ namespace RecipeConsoleApp
 {
     public class WorkerClass
     {
+        string redColor = "\u001b[31m";
+        string greenColor = "\u001b[32m";
+        string blueColor = "\u001b[34m";
+
         /// <summary>
         /// Instance of ReipeClass
         /// </summary>
@@ -30,6 +34,8 @@ namespace RecipeConsoleApp
         /// </summary>
         public void StartWorker()
         {
+            Console.BackgroundColor = ConsoleColor.DarkRed;
+
             Console.WriteLine("\n --------------------------------------" +
                               "\n |       Welcome to Recipe App        |\n" +
                               " --------------------------------------\n");
@@ -47,6 +53,8 @@ namespace RecipeConsoleApp
         /// </summary>
         public void DisplayMenu()
         {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+
             Console.WriteLine("\n  -------------------------------------\n" +
                               "  | Choose an option from menu bellow |\n" +
                               "  |     (1) Store Recipe              |\n" +
@@ -57,12 +65,6 @@ namespace RecipeConsoleApp
                               "  |     (6) Terminate and Exit        |\n" +
                               "  -------------------------------------\n" +
                               "  Type the number next to the option desired");
-            //Chhange background Color Add Sounds
-            // Type Recipe Name --> Scale 0.5 half, 2 double, 3 triple, Reset --> Display
-            // In display recipe show all recipes stored and ask user to select by typing name or selecting
-            //Type Recipe Name --> Display info that Recipe was succesfully deleted
-            //Test
-            //Insert input validation to options to diplay messages if there is no recipes still in system
         }
 
         //--------------------------------------------------------------------------------------------------//

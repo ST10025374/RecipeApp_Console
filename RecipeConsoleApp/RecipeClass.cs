@@ -261,6 +261,8 @@ namespace RecipeConsoleApp
             RecipeArray.Remove(RecipeArray[Option]);
         }
 
+
+        //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Method to Scale Up Recipe
         /// </summary>
@@ -296,7 +298,7 @@ namespace RecipeConsoleApp
                             + "\n (3) Triple" 
                             + "\n (4) Reset"
                             + "\n Type Option:");
-            // Type Recipe Name --> Scale 0.5 half, 2 double, 3 triple, Reset --> Display
+            
             Console.WriteLine("Select Scale up Options bellow:");
 
             do
@@ -339,6 +341,7 @@ namespace RecipeConsoleApp
 
         }
 
+        //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Method to do calculations
         /// </summary>
