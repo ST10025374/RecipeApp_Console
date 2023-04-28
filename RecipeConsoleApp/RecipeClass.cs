@@ -15,24 +15,19 @@ namespace RecipeConsoleApp
         public string RecipeName { get; set; } = string.Empty;
 
         /// <summary>
-        /// Store the recipe number of steps
-        /// </summary>
-        public int NumberOfSteps { get; set; } = 0;
-
-        /// <summary>
-        /// Will store a description of each step in Recipe
-        /// </summary>
-        public string StepDescription { get; set; } = string.Empty;
-
-        /// <summary>
         /// Instance of Ingredients class
         /// </summary>
         public IngredientsClass Ingredients = new IngredientsClass();
 
         /// <summary>
+        /// Instance of Step class
+        /// </summary>
+        public StepClass Steps = new StepClass();
+
+        /// <summary>
         /// Array to store details of each ingredient in recipe
         /// </summary>
-        public List<IngredientsClass> IngredientsArray = new List<IngredientsClass>();
+        public IngredientsClass[] IngredientsArray;
 
         /// <summary>
         /// Array to store each recipe 
@@ -42,7 +37,7 @@ namespace RecipeConsoleApp
         /// <summary>
         /// Array to store each step description
         /// </summary>
-        public string[] StepArray = new string[50];
+        public StepClass[] StepArray;
 
         //---------------------------------------------------------------------------------------//
         /// <summary>
@@ -50,7 +45,8 @@ namespace RecipeConsoleApp
         /// </summary>
         public RecipeClass()
         {
-
+            IngredientsArray = new IngredientsClass[Ingredients.NumberOfIngredients];
+            StepArray = new StepClass[Steps.NumberOfSteps];
         }
 
         //---------------------------------------------------------------------------------------//
@@ -81,70 +77,21 @@ namespace RecipeConsoleApp
 
         //---------------------------------------------------------------------------------------//
         /// <summary>
-        /// Ask User for recipe steps amount
-        /// Keep asking till correct input requested is added
-        /// In case incorrect input is added will display error message
-        /// </summary>
-        public void GetNumberOfSteps()
-        {
-            Boolean Valid = true;
-
-            do
-            {
-                try
-                {
-                    Valid = true;
-                    Console.WriteLine("Enter the amount of steps in the recipe: ");
-                    this.NumberOfSteps = int.Parse(Console.ReadLine());
-                }
-                catch (FormatException)
-                {
-                    Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid number. Please try again.");
-                }
-            } while (Valid.Equals(false));
-        }
-
-        //---------------------------------------------------------------------------------------//
-        /// <summary>
-        /// Ask User for step description
-        /// Keep asking till correct input requested is added
-        /// In case incorrect input is added will display error message
-        /// </summary>
-        public void GetStepDescription()
-        {
-            Boolean Valid = true;
-            //try to loop for amount of steps including numeration when asking user for input
-            do
-            {
-                try
-                {
-                    Valid = true;
-                    Console.WriteLine("Enter the description of step: ");
-                    this.StepDescription = Console.ReadLine();
-                }
-                catch (FormatException)
-                {
-                    Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid description. Please try again.");
-                }
-            } while (Valid.Equals(false));
-        }
-
-        //---------------------------------------------------------------------------------------//
-        /// <summary>
         /// Method that calls methods 
         /// Asks user for Number of Ingredients and call method to get an ingredient detail
         /// Will loop for the number of ingredient specified
         /// Loop for amount of steps and keeps asking for description and store in StepArray
+        /// Store all Data in Recipe Object including Arrays
         /// </summary>
         public void GetRecipe()
         {
+            var Recipe = new RecipeClass();
+
             Console.WriteLine("\nEnter Recipe information bellow" +
                               "\n-------------------------------\n");
             //-----> Add Color to text <-----//
 
-            GetRecipeName();
+            Recipe.GetRecipeName();
             Ingredients.GetNumberOfIngredients();
 
             for (int i = 0; i < Ingredients.NumberOfIngredients; i++)
@@ -155,45 +102,31 @@ namespace RecipeConsoleApp
                                   "\n------------\n");
 
                 NewIngredient.GetIngredientDetails();
-                NewIngredient.NumberOfIngredients = Ingredients.NumberOfIngredients;
-                NewIngredient.IngredientName = Ingredients.IngredientName;
-                NewIngredient.IngredientQuantity = Ingredients.IngredientQuantity;
-                NewIngredient.UnitOfMeasurement = Ingredients.UnitOfMeasurement;
 
-                IngredientsArray.Add(NewIngredient);
+                this.IngredientsArray.Equals(NewIngredient);
             }
 
             Console.WriteLine("\nType number of Steps" +
                               "\n--------------------");
 
-            GetNumberOfSteps();
+            Steps.GetNumberOfSteps();
 
-            for (int i = 0; i < this.NumberOfSteps; i++)
+            for (int i = 0; i < Steps.NumberOfSteps; i++)
             {
+                var NewStep = new StepClass();
+
                 Console.WriteLine("\nStep " + (i + 1));
-                GetStepDescription();
-                StepArray[i] = this.StepDescription;
+
+                NewStep.GetStepDescription();
+
+                this.StepArray.Equals(NewStep);
             }
+            
+            Recipe.IngredientsArray.Equals(this.IngredientsArray);
+            Recipe.StepArray.Equals(this.StepArray);
+            this.RecipeArray.Add(Recipe);
         }
 
-        //---------------------------------------------------------------------------------------//
-        /// <summary>
-        /// Calls method that gets user Inputs and Stores Object In RecipeArray
-        /// Stores Ingredient and step array in recipe array
-        /// </summary>
-        public void StoreRecipeData()
-        {
-            var NewRecipe = new RecipeClass();
-
-            GetRecipe();
-
-            NewRecipe.RecipeName = this.RecipeName;
-            NewRecipe.NumberOfSteps = this.NumberOfSteps;
-            NewRecipe.StepArray = this.StepArray;
-            NewRecipe.IngredientsArray = this.IngredientsArray;
-
-            RecipeArray.Add(NewRecipe);
-        }
         //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Displays Recipe to User
@@ -268,7 +201,7 @@ namespace RecipeConsoleApp
             Console.WriteLine("\nDisplay Ingredients" +
                               "\n--------------\n");
 
-            for (int i = 0; i < this.RecipeArray[Option].IngredientsArray.Count; i++)
+            for (int i = 0; i < this.RecipeArray[Option].IngredientsArray.Length; i++)
             {
                 Console.WriteLine("Ingredient name " + (i + 1) + ": "
                     + this.RecipeArray[Option].IngredientsArray[i].IngredientName);
@@ -281,7 +214,7 @@ namespace RecipeConsoleApp
 
         //---------------------------------------------------------------------------------------//
         /// <summary>
-        /// Method to display recime names list
+        /// Method to display recipe names list
         /// Loop thru Recipe Array
         /// This method is called in Display Recipe Data
         /// </summary>

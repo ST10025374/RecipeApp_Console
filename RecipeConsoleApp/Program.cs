@@ -13,6 +13,8 @@ namespace RecipeConsoleApp
             WorkerClass worker = new WorkerClass();
 
             worker.StartWorker();
+
+            Console.ReadLine();
         }
     }
 }

@@ -99,7 +99,7 @@ namespace RecipeConsoleApp
             switch (Option)
             {
                 case 1:
-                    Recipe.StoreRecipeData();
+                    Recipe.GetRecipe();
                     break;
 
                 case 2:
