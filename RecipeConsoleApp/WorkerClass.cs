@@ -107,7 +107,7 @@ namespace RecipeConsoleApp
                     break;
 
                 case 3:
-                        
+                        Recipe.ScaleUp();
                     break;
 
                 case 4:
