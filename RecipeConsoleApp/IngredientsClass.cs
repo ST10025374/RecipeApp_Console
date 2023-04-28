@@ -173,9 +173,7 @@ namespace RecipeConsoleApp
         /// Ask User for Ingredients Details calling methods to get Inputs
         /// </summary>
         public void GetIngredientDetails()
-        {
-            Console.WriteLine("\nType Ingredient Details" +
-                              "\n-----------------------\n");
+        {            
             GetIngredientName();
             GetUnitOfMeasurement();
             GetIngredientQuantity();

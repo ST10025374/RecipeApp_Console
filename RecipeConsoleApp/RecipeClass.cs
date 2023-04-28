@@ -94,6 +94,9 @@ namespace RecipeConsoleApp
             Recipe.GetRecipeName();
             Ingredients.GetNumberOfIngredients();
 
+            Console.WriteLine("\nType Ingredient Details" +
+                              "\n-----------------------\n");
+
             for (int i = 0; i < Ingredients.NumberOfIngredients; i++)
             {
                 var NewIngredient = new IngredientsClass();
@@ -198,18 +201,19 @@ namespace RecipeConsoleApp
         /// </summary>
         public void DisplayIngredientData(int Option)
         {
-            Console.WriteLine("\nDisplay Ingredients" +
-                              "\n--------------\n");
+                Console.WriteLine("\nDisplay Ingredients" +
+                                  "\n------------------\n");
+                
 
-            for (int i = 0; i < this.RecipeArray[Option].IngredientsArray.Length; i++)
-            {
-                Console.WriteLine("Ingredient name " + (i + 1) + ": "
-                    + this.RecipeArray[Option].IngredientsArray[i].IngredientName);
-                Console.WriteLine("Ingredient Quantity: "
-                    + this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity
-                    + " " + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement
-                    + "\n");
-            }
+                int IngredientsArrayLength = this.RecipeArray[Option].IngredientsArray.Length;
+
+                for (int i = 0; i < IngredientsArrayLength; i++)
+                {
+                    Console.WriteLine("Ingredient " + (i + 1) + " : "
+                        + this.RecipeArray[Option].IngredientsArray[i].IngredientName + " -> "
+                        + this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity + " "
+                        + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement);
+                }
         }
 
         //---------------------------------------------------------------------------------------//
@@ -219,13 +223,42 @@ namespace RecipeConsoleApp
         /// This method is called in Display Recipe Data
         /// </summary>
         public void DisplayRecipeNameList()
-        {
-            var ArrayLength = this.RecipeArray.Count;
-
-            for (int i = 0; i < ArrayLength; i++)
+        {           
+            for (int i = 0; i < this.RecipeArray.Count; i++)
             {
                 DisplayRecipeName(i);
             }
+        }
+
+        /// <summary>
+        /// Method To Delete Recipe
+        /// </summary>
+        public void DeleteRecipe()
+        {
+            Console.WriteLine("\nDelete Recipe" +
+                              "\n-------------\n");
+
+            DisplayRecipeNameList();
+
+            Console.WriteLine("Type Recipe option that must be deleted: ");
+
+            int Option = int.Parse(Console.ReadLine());
+            Boolean Valid = true;
+
+            do
+            {
+                try
+                {
+                    Valid = true;
+                }
+                catch (FormatException)
+                {
+                    Valid = false;
+                    Console.WriteLine("Sorry, you did not enter a valid Option. Please try again.");
+                }
+            } while (Valid.Equals(false));
+
+            RecipeArray.Remove(RecipeArray[Option]);
         }
     }
 }

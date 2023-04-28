@@ -99,23 +99,23 @@ namespace RecipeConsoleApp
             switch (Option)
             {
                 case 1:
-                    Recipe.GetRecipe();
+                        Recipe.GetRecipe();
                     break;
 
                 case 2:
-                    Recipe.DisplayRecipeData();
+                        Recipe.DisplayRecipeData();
                     break;
 
                 case 3:
-
+                        
                     break;
 
                 case 4:
-
+                        Recipe.DeleteRecipe();
                     break;
 
                 case 5:
-
+                        Console.Clear();
                     break;
 
                 case 6:
@@ -134,7 +134,7 @@ namespace RecipeConsoleApp
         /// </summary>
         public void Exit()
         {
-            Console.ReadLine();
+            Environment.Exit(0);
         }
     }
 }
