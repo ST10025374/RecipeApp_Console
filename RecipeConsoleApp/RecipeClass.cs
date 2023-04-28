@@ -197,6 +197,85 @@ namespace RecipeConsoleApp
             RecipeArray.Add(NewRecipe);
         }
 
+        /// <summary>
+        /// Displays Recipe to User
+        /// Ask user for Recipe Option
+        /// </summary>
+        public int GetRecipeData()
+        {
+            Console.WriteLine("\nDisplay Recipe" +
+                              "\n--------------\n");
+            var ArrayLength = this.RecipeArray.Count;
+
+            for (int i = 0; i < ArrayLength ;i++) 
+            {
+                var RecipName = this.RecipeArray[i].RecipeName;
+
+                Console.WriteLine( " (" + (i + 1) + ") " + this.RecipeName);
+            }
+
+            Boolean Valid = true;
+
+            int Option = 0;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("\nType option number from above recipes to diplay: ");
+                    Option = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Valid = false;
+                    Console.WriteLine("Sorry, you did not enter a valid Recipe. Please try again.");
+                }
+            } while (!Valid);
+
+            return Option;
+        }
+
+        /// <summary>
+        /// Display recipe information
+        /// </summary>
+        public void DisplayRecipeData(int Option)
+        {
+            
+            
+            DisplayIngredientData(Option);
+
+            int StepArrayLength = this.RecipeArray[Option].StepArray.Length;
+                 
+            for (int i = 0; i < StepArrayLength; i++)
+            {
+                Console.WriteLine("\nStep " + (i +1) + " :" + this.StepArray[i]);
+            }
+
+
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void DisplayRecipeDName(int Option)
+        {
+            Console.WriteLine("\nRecipe name :" + this.RecipeArray[Option].RecipeName );
+        }
+
+        /// <summary>
+        /// Display Ingredients details
+        /// </summary>
+        public void DisplayIngredientData(int Option)
+        { Console.WriteLine()   a
+            for (int i = 0; i < this.RecipeArray[Option].IngredientsArray.Count; i++)
+            {
+                Console.WriteLine("Ingredient name " + (i + 1) + ": " + this.RecipeArray[Option].IngredientsArray[i].IngredientName);
+                Console.WriteLine("Ingredient Quantity: " 
+                    + this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity 
+                    + " " + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement);
+            }
+        }
     }
 }
 //---------------------------------------------------------< END >-----------------------------------------------------//

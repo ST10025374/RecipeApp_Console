@@ -8,6 +8,8 @@ namespace RecipeConsoleApp
 {
     public class WorkerClass
     {
+
+        public RecipeClass Recipe = new RecipeClass();
         /// <summary>
         /// Default Constructor
         /// </summary>
@@ -93,7 +95,7 @@ namespace RecipeConsoleApp
             switch (Option)
             {
                 case 1:
-
+                        Recipe.StoreRecipeData();
                     break;
 
                 case 2:
