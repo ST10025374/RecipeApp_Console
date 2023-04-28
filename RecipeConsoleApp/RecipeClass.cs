@@ -260,6 +260,59 @@ namespace RecipeConsoleApp
 
             RecipeArray.Remove(RecipeArray[Option]);
         }
+
+        /// <summary>
+        /// Method to Scale Up Recipe
+        /// </summary>
+        public void ScaleUp()
+        {
+            Console.WriteLine("\nScale Up Recipe" +
+                              "\n-------------\n");
+
+            Boolean Valid = true;
+            int Option = 0;
+
+            DisplayRecipeNameList();
+            // Type Recipe Name --> Scale 0.5 half, 2 double, 3 triple, Reset --> Display
+            Console.WriteLine("\nSelect Scale up Options bellow:");
+
+            do
+            {
+                try
+                {
+                    Valid = true;
+                    if (Option < 1 || Option > 3)
+                    {
+                        Valid = false;
+                    }
+                }
+                catch
+                {
+                    Valid = false;
+                    Console.WriteLine("Sorry, you did not enter a valid Option. Please try again.");
+                }
+
+            } while (Option.Equals(false));
+
+            Console.WriteLine("\n (1) Half 0.5"
+                            + "\n (2) Double 2" 
+                            + "\n (3) Triple\n");
+
+            switch (Option) 
+            {
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+
+            }
+
+        }
     }
 }
 //---------------------------------------------------------< END >-----------------------------------------------------//

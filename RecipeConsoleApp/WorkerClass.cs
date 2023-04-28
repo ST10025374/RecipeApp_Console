@@ -121,10 +121,6 @@ namespace RecipeConsoleApp
                 case 6:
                     Exit();
                     break;
-
-                default:
-                    //Analyse if needed//
-                    break;
             }
         }
 
