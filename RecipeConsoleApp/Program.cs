@@ -10,6 +10,9 @@ namespace RecipeConsoleApp
     {
         static void Main(string[] args)
         {
+            WorkerClass worker = new WorkerClass();
+
+            worker.StartWorker();
         }
     }
 }

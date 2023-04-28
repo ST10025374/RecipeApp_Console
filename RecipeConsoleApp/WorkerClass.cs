@@ -8,8 +8,11 @@ namespace RecipeConsoleApp
 {
     public class WorkerClass
     {
-
+        /// <summary>
+        /// Instance of ReipeClass
+        /// </summary>
         public RecipeClass Recipe = new RecipeClass();
+
         /// <summary>
         /// Default Constructor
         /// </summary>
@@ -29,7 +32,7 @@ namespace RecipeConsoleApp
         {
             Console.WriteLine("\n --------------------------------------" +
                               "\n |       Welcome to Recipe App        |\n" +
-                              "\n --------------------------------------\n");
+                              " --------------------------------------\n");
             
             do
             {
@@ -99,7 +102,7 @@ namespace RecipeConsoleApp
                     break;
 
                 case 2:
-
+                        Recipe.DisplayRecipeData();
                     break;
 
                 case 3:
@@ -115,13 +118,22 @@ namespace RecipeConsoleApp
                     break;
 
                 case 6:
-
+                    Exit();
                     break;
 
                 default:
                     //Analyse if needed//
                     break;
             }
+        }
+
+        //--------------------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Method to Terminate Program
+        /// </summary>
+        public void Exit()
+        {
+            Console.ReadLine();
         }
     }
 }

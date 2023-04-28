@@ -60,7 +60,7 @@ namespace RecipeConsoleApp
                     Valid = false;
                     Console.WriteLine("Sorry, you did not enter a valid number. Please try again.");
                 }
-            } while (!Valid);
+            } while (Valid.Equals(false));
         }
 
         //---------------------------------------------------------------------------------------//
