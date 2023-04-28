@@ -27,7 +27,7 @@ namespace RecipeConsoleApp
         /// <summary>
         /// Array to store details of each ingredient in recipe
         /// </summary>
-        public IngredientsClass[] IngredientsArray;
+        public List<IngredientsClass> IngredientsArray = new List<IngredientsClass>();
 
         /// <summary>
         /// Array to store each recipe 
@@ -37,7 +37,7 @@ namespace RecipeConsoleApp
         /// <summary>
         /// Array to store each step description
         /// </summary>
-        public StepClass[] StepArray;
+        public List<StepClass> StepArray = new List<StepClass>();
 
         //---------------------------------------------------------------------------------------//
         /// <summary>
@@ -45,8 +45,7 @@ namespace RecipeConsoleApp
         /// </summary>
         public RecipeClass()
         {
-            IngredientsArray = new IngredientsClass[Ingredients.NumberOfIngredients];
-            StepArray = new StepClass[Steps.NumberOfSteps];
+            
         }
 
         //---------------------------------------------------------------------------------------//
@@ -106,7 +105,7 @@ namespace RecipeConsoleApp
 
                 NewIngredient.GetIngredientDetails();
 
-                this.IngredientsArray.Equals(NewIngredient);
+                Recipe.IngredientsArray.Add(NewIngredient);
             }
 
             Console.WriteLine("\nType number of Steps" +
@@ -122,11 +121,9 @@ namespace RecipeConsoleApp
 
                 NewStep.GetStepDescription();
 
-                this.StepArray.Equals(NewStep);
+                Recipe.StepArray.Equals(NewStep);
             }
             
-            Recipe.IngredientsArray.Equals(this.IngredientsArray);
-            Recipe.StepArray.Equals(this.StepArray);
             this.RecipeArray.Add(Recipe);
         }
 
@@ -173,7 +170,7 @@ namespace RecipeConsoleApp
         /// </summary>
         public void DisplayRecipeSteps(int Option)
         {
-            int StepArrayLength = this.RecipeArray[Option].StepArray.Length;
+            int StepArrayLength = this.RecipeArray[Option].StepArray.Count;
 
             for (int i = 0; i < StepArrayLength; i++)
             {
@@ -205,7 +202,7 @@ namespace RecipeConsoleApp
                                   "\n------------------\n");
                 
 
-                int IngredientsArrayLength = this.RecipeArray[Option].IngredientsArray.Length;
+                int IngredientsArrayLength = this.RecipeArray[Option].IngredientsArray.Count;
 
                 for (int i = 0; i < IngredientsArrayLength; i++)
                 {
