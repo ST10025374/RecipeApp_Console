@@ -8,10 +8,6 @@ namespace RecipeConsoleApp
 {
     public class WorkerClass
     {
-        string redColor = "\u001b[31m";
-        string greenColor = "\u001b[32m";
-        string blueColor = "\u001b[34m";
-
         /// <summary>
         /// Instance of ReipeClass
         /// </summary>
@@ -34,8 +30,6 @@ namespace RecipeConsoleApp
         /// </summary>
         public void StartWorker()
         {
-            Console.BackgroundColor = ConsoleColor.DarkRed;
-
             Console.WriteLine("\n --------------------------------------" +
                               "\n |       Welcome to Recipe App        |\n" +
                               " --------------------------------------\n");
@@ -95,6 +89,7 @@ namespace RecipeConsoleApp
                 {
                     Valid = false;
                     Console.WriteLine("Sorry, you did not enter a valid option. Please try again.");
+                    DisplayMenu();
                 }
             } while (Valid.Equals(false));
 
