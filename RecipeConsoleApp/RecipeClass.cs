@@ -88,7 +88,6 @@ namespace RecipeConsoleApp
 
             Console.WriteLine("\nEnter Recipe information bellow" +
                               "\n-------------------------------\n");
-            //-----> Add Color to text <-----//
 
             Recipe.GetRecipeName();
             Ingredients.GetNumberOfIngredients();
@@ -246,9 +245,16 @@ namespace RecipeConsoleApp
 
         /// <summary>
         /// Method To Delete Recipe
+        /// If user selects recipe option that does not exist system will ask again
         /// </summary>
         public void DeleteRecipe()
         {
+            if (RecipeArray.Count.Equals(0))
+            {
+                Console.Clear();
+                Console.WriteLine("\nSorry, there is no recipes saved at the moment");
+                return;
+            }
             Console.WriteLine("\nDelete Recipe" +
                               "\n-------------\n");
 
@@ -279,9 +285,17 @@ namespace RecipeConsoleApp
         //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Method to Scale Up Recipe
+        /// If user selects recipe option that does not exist system will ask again
         /// </summary>
         public void ScaleUp()
         {
+            if (RecipeArray.Count.Equals(0))
+            {
+                Console.Clear();
+                Console.WriteLine("\nSorry, there is no recipes saved at the moment");
+                return;
+            }
+
             Console.WriteLine("\nScale Up Recipe" +
                               "\n-------------\n");
 
