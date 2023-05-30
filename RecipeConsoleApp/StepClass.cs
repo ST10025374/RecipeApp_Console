@@ -48,7 +48,7 @@ namespace RecipeConsoleApp
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid number. Please try again.");
+                    Console.WriteLine("\nSorry, you did not enter a valid number. Please try again.");
                 }
             } while (Valid.Equals(false));
         }
@@ -74,7 +74,7 @@ namespace RecipeConsoleApp
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid description. Please try again.");
+                    Console.WriteLine("\nSorry, you did not enter a valid description. Please try again.");
                 }
             } while (Valid.Equals(false));
         }

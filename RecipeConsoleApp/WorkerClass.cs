@@ -47,8 +47,6 @@ namespace RecipeConsoleApp
         /// </summary>
         public void DisplayMenu()
         {
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
-
             Console.WriteLine("\n  -------------------------------------\n" +
                               "  | Choose an option from menu bellow |\n" +
                               "  |     (1) Store Recipe              |\n" +
@@ -88,7 +86,8 @@ namespace RecipeConsoleApp
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid option. Please try again.");
+                    Console.Clear();
+                    Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
                     DisplayMenu();
                 }
             } while (Valid.Equals(false));
@@ -96,7 +95,8 @@ namespace RecipeConsoleApp
             switch (Option)
             {
                 case 1:
-                        Recipe.GetRecipe();
+                    Console.Clear();
+                    Recipe.GetRecipe();
                     break;
 
                 case 2:

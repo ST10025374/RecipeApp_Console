@@ -69,7 +69,7 @@ namespace RecipeConsoleApp
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid name. Please try again.");
+                    Console.WriteLine("\nSorry, you did not enter a valid name. Please try again.");
                 }
             } while (Valid.Equals(false));
         }
@@ -131,9 +131,18 @@ namespace RecipeConsoleApp
         /// <summary>
         /// Displays Recipe to User
         /// Ask user for Recipe Option
+        /// If there is no recipes saved it will return
+        /// If user selects recipe option that does not exist system will ask again
         /// </summary>
         public void DisplayRecipeData()
         {
+            if (RecipeArray.Count.Equals(0))
+            {
+                Console.Clear();
+                Console.WriteLine("\nSorry, there is no recipes saved at the moment");     
+                return;
+            }
+
             Console.WriteLine("\nDisplay Recipe" +
                               "\n--------------\n");
 
@@ -150,11 +159,16 @@ namespace RecipeConsoleApp
                     Valid = true;
                     Console.WriteLine("\nType option number from above recipes to diplay: ");
                     Option = int.Parse(Console.ReadLine());
+                    if ((RecipeArray.Count() - 1) < Option)
+                    {
+                        Valid = false;
+                        Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
+                    }
                 }
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid option. Please try again.");
+                    Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
                 }
             } while (Valid.Equals(false));
 
@@ -254,7 +268,7 @@ namespace RecipeConsoleApp
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid Option. Please try again.");
+                    Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
                 }
             } while (Valid.Equals(false));
 
@@ -288,7 +302,7 @@ namespace RecipeConsoleApp
                 catch
                 {
                     Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid Option. Please try again.");
+                    Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
                 }
 
             } while (RecipeOption.Equals(false));
@@ -314,7 +328,7 @@ namespace RecipeConsoleApp
                 catch
                 {
                     Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid Option. Please try again.");
+                    Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
                 }
 
             } while (Option.Equals(false));

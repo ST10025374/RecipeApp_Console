@@ -59,7 +59,7 @@ namespace RecipeConsoleApp
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid number. Please try again.");
+                    Console.WriteLine("\nSorry, you did not enter a valid number. Please try again.");
                 }
             } while (Valid.Equals(false));
         }
@@ -85,7 +85,7 @@ namespace RecipeConsoleApp
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid name. Please try again.");
+                    Console.WriteLine("\nSorry, you did not enter a valid name. Please try again.");
                 }
             } while (Valid.Equals(false));
         }
@@ -111,7 +111,7 @@ namespace RecipeConsoleApp
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("Sorry, you did not enter a valid number. Please try again.");
+                    Console.WriteLine("\nSorry, you did not enter a valid number. Please try again.");
                 }
             } while (Valid.Equals(false));
         }
@@ -138,8 +138,9 @@ namespace RecipeConsoleApp
                     Console.WriteLine("Select the unit of measurement by typing the option number: \n" +
                               "[1] Gram (g) \n" +
                               "[2] Tablespoon (tbsp) \n" +
-                              "[3] Cup (c)");
-
+                              "[3] Cup (c) \n" +
+                              "Type option:");
+                    
                     Option = int.Parse(Console.ReadLine());
 
                     if (Option < 1 || Option > 3)
@@ -150,7 +151,7 @@ namespace RecipeConsoleApp
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("Sorry, you did not select a valid option. Please try again.");
+                    Console.WriteLine("\nSorry, you did not select a valid option. Please try again.");
                 }
             } while (Valid.Equals(false));
 
