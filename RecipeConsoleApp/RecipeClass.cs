@@ -243,6 +243,7 @@ namespace RecipeConsoleApp
             }
         }
 
+        //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Method To Delete Recipe
         /// If user selects recipe option that does not exist system will ask again
@@ -287,6 +288,7 @@ namespace RecipeConsoleApp
         /// Method to Scale Up Recipe
         /// If user selects recipe option that does not exist system will ask again
         /// If user selects invalid recipe option system will ask again
+        /// Method keeps looping till user terminates
         /// </summary>
         public void ScaleUp()
         {
@@ -297,83 +299,89 @@ namespace RecipeConsoleApp
                 return;
             }
 
-            Console.WriteLine("\nScale Up Recipe" +
+            Boolean Control = false; 
+
+            do
+            {                          
+                Console.WriteLine("\nScale Up Recipe" +
                               "\n-------------\n");
 
-            Boolean Valid = true;
-            int ScaleOption = 0;
-            int RecipeOption = 0;
+                Boolean Valid = true;
+                int ScaleOption = 0;
+                int RecipeOption = 0;
 
-            DisplayRecipeNameList();
+                DisplayRecipeNameList();
 
-            do
-            {
-                try
+                do
                 {
-                    Console.WriteLine("Select Recipe option to Scale up:");
-                    Valid = true;
-                    RecipeOption = int.Parse(Console.ReadLine()); 
-                    if ((RecipeArray.Count() - 1) < RecipeOption)
+                    try
+                    {
+                        Console.WriteLine("\nSelect Recipe option to Scale up:");
+                        Valid = true;
+                        RecipeOption = int.Parse(Console.ReadLine());
+                        if ((RecipeArray.Count() - 1) < RecipeOption)
+                        {
+                            Valid = false;
+                            Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
+                        }
+                    }
+                    catch (FormatException)
                     {
                         Valid = false;
-                        Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
-                    }
-                }
-                catch (FormatException)
-                {
-                    Valid = false;
-                    Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
-                }
-
-            } while (Valid.Equals(false));
-                
-            Console.WriteLine("\n (1) Half 0.5"
-                            + "\n (2) Double 2" 
-                            + "\n (3) Triple" 
-                            + "\n (4) Reset"
-                            + "\n Type Option:");
-           
-            do
-            {
-                try
-                {
-                    Valid = true;
-                    Console.WriteLine("Select Scale up Options bellow:");
-                    
-                    ScaleOption = int.Parse(Console.ReadLine());
-
-                    if (ScaleOption < 1 || ScaleOption > 4)
-                    {
                         Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
-                        Valid = false;
                     }
-                }
-                catch (FormatException)
+
+                } while (Valid.Equals(false));
+
+                Console.WriteLine("\n (1) Half 0.5"
+                            + "\n (2) Double 2"
+                            + "\n (3) Triple"
+                            + "\n (4) Reset"
+                            + "\n (5) Go back to menu"
+                            + "\n Type Option:");
+
+                do
                 {
-                    Valid = false;
-                    Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
-                }
+                    try
+                    {
+                        Valid = true;
+                        Console.WriteLine("Select Scale up Options bellow:");
 
-            } while (Valid.Equals(false));
+                        ScaleOption = int.Parse(Console.ReadLine());
 
-            switch (ScaleOption) 
-            {
-                case 1:
+                        if (ScaleOption < 1 || ScaleOption > 5)
+                        {
+                            Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
+                            Valid = false;
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Valid = false;
+                        Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
+                    }
+
+                } while (Valid.Equals(false));
+
+                switch (ScaleOption)
+                {
+                    case 1:
                         ScaleUpCalc(RecipeOption, 0.5);
-                    break;
-                case 2:
+                        break;
+                    case 2:
                         ScaleUpCalc(RecipeOption, 2);
-                    break;
-                case 3:
+                        break;
+                    case 3:
                         ScaleUpCalc(RecipeOption, 3);
-                    break;
-
-                case 4:
+                        break;
+                    case 4:
                         DisplayIngredientData(RecipeOption);
-                    break;
-
-            }
-
+                        break;
+                    case 5:
+                        Control = true;
+                        break;
+                }
+            } while (Control.Equals(false));
         }
 
         //---------------------------------------------------------------------------------------//
@@ -382,15 +390,32 @@ namespace RecipeConsoleApp
         /// </summary>
         public void ScaleUpCalc(int Option, double Constant)
         {
-
             int IngredientsArrayLength = this.RecipeArray[Option].IngredientsArray.Count;
 
             for (int i = 0; i < IngredientsArrayLength; i++)
             {
+                string IngName = this.RecipeArray[Option].IngredientsArray[i].IngredientName;
+                double IngQuantity = (this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity) * Constant;
+                string IngUnit = this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement;
+
+                if ((IngQuantity < 1) && IngUnit.Equals("cups"))
+                {
+                    double IngQuantityCalc = IngQuantity * 16;
+                    IngQuantity = IngQuantityCalc;
+                    IngUnit = "tablespoons";
+                }
+
+                if ((IngQuantity >= 16) && IngUnit.Equals("tablespoons"))
+                {
+                    double IngQuantityCalc = IngQuantity / 16;
+                    IngQuantity = IngQuantityCalc;
+                    IngUnit = "cups";
+                }
+
                 Console.WriteLine("Ingredient " + (i + 1) + " : "
-                    + this.RecipeArray[Option].IngredientsArray[i].IngredientName+ " -> "
-                    + Convert.ToDouble(this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity)*Constant + " "
-                    + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement);
+                    + IngName + " -> "
+                    + IngQuantity + " "
+                    + IngUnit);
             }
         }
     }
