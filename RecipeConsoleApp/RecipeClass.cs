@@ -286,6 +286,7 @@ namespace RecipeConsoleApp
         /// <summary>
         /// Method to Scale Up Recipe
         /// If user selects recipe option that does not exist system will ask again
+        /// If user selects invalid recipe option system will ask again
         /// </summary>
         public void ScaleUp()
         {
@@ -300,56 +301,62 @@ namespace RecipeConsoleApp
                               "\n-------------\n");
 
             Boolean Valid = true;
-            int Option = 0;
+            int ScaleOption = 0;
             int RecipeOption = 0;
 
             DisplayRecipeNameList();
-
-            Console.WriteLine("Select Recipe option to Scale up:");
 
             do
             {
                 try
                 {
+                    Console.WriteLine("Select Recipe option to Scale up:");
                     Valid = true;
+                    RecipeOption = int.Parse(Console.ReadLine()); 
+                    if ((RecipeArray.Count() - 1) < RecipeOption)
+                    {
+                        Valid = false;
+                        Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
+                    }
                 }
-                catch
+                catch (FormatException)
                 {
                     Valid = false;
                     Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
                 }
 
-            } while (RecipeOption.Equals(false));
+            } while (Valid.Equals(false));
                 
             Console.WriteLine("\n (1) Half 0.5"
                             + "\n (2) Double 2" 
                             + "\n (3) Triple" 
                             + "\n (4) Reset"
                             + "\n Type Option:");
-            
-            Console.WriteLine("Select Scale up Options bellow:");
-
+           
             do
             {
                 try
                 {
                     Valid = true;
-                    if (Option < 1 || Option > 4)
+                    Console.WriteLine("Select Scale up Options bellow:");
+                    
+                    ScaleOption = int.Parse(Console.ReadLine());
+
+                    if (ScaleOption < 1 || ScaleOption > 4)
                     {
+                        Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
                         Valid = false;
                     }
                 }
-                catch
+                catch (FormatException)
                 {
                     Valid = false;
                     Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
                 }
 
-            } while (Option.Equals(false));
+            } while (Valid.Equals(false));
 
-           
-
-            switch (Option) 
+            switch (ScaleOption) 
             {
                 case 1:
                         ScaleUpCalc(RecipeOption, 0.5);
