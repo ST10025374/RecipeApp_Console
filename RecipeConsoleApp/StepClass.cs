@@ -62,7 +62,7 @@ namespace RecipeConsoleApp
         public void GetStepDescription()
         {
             Boolean Valid = true;
-            //try to loop for amount of steps including numeration when asking user for input
+
             do
             {
                 try

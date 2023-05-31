@@ -146,12 +146,13 @@ namespace RecipeConsoleApp
                     if (Option < 1 || Option > 3)
                     {
                         Valid = false;
+                        Console.WriteLine("\nSorry, you did not select a valid option. Please try again.\n");
                     }
                 }
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("\nSorry, you did not select a valid option. Please try again.");
+                    Console.WriteLine("\nSorry, you did not select a valid option. Please try again.\n");
                 }
             } while (Valid.Equals(false));
 

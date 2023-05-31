@@ -143,7 +143,9 @@ namespace RecipeConsoleApp
             }
 
             Console.WriteLine("\nDisplay Recipe" +
-                              "\n--------------\n");
+                              "\n--------------\n", Console.ForegroundColor);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             DisplayRecipeNameList();
 
@@ -186,7 +188,9 @@ namespace RecipeConsoleApp
             int StepArrayLength = this.RecipeArray[Option].StepArray.Count;
 
             Console.WriteLine("\nRecipe Steps" +
-                              "\n------------\n");
+                              "\n------------\n", Console.ForegroundColor);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             for (int i = 0; i < StepArrayLength; i++)
             {
@@ -215,10 +219,11 @@ namespace RecipeConsoleApp
         public void DisplayIngredientData(int Option)
         {
                 Console.WriteLine("\nDisplay Ingredients" +
-                                  "\n------------------\n");
-                
+                                  "\n------------------\n", Console.ForegroundColor );
 
-                int IngredientsArrayLength = this.RecipeArray[Option].IngredientsArray.Count;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            int IngredientsArrayLength = this.RecipeArray[Option].IngredientsArray.Count;
 
                 for (int i = 0; i < IngredientsArrayLength; i++)
                 {
@@ -257,13 +262,15 @@ namespace RecipeConsoleApp
                 return;
             }
             Console.WriteLine("\nDelete Recipe" +
-                              "\n-------------\n");
+                              "\n-------------\n", Console.ForegroundColor);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             DisplayRecipeNameList();
 
             Console.WriteLine("Type Recipe option that must be deleted: ");
 
-            int Option = int.Parse(Console.ReadLine());
+            int Option = 0;
             Boolean Valid = true;
 
             do
@@ -271,6 +278,12 @@ namespace RecipeConsoleApp
                 try
                 {
                     Valid = true;
+                    Option = int.Parse(Console.ReadLine());
+                    if ((RecipeArray.Count() - 1) < Option)
+                    {
+                        Valid = false;
+                        Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
+                    }
                 }
                 catch (FormatException)
                 {
@@ -279,7 +292,35 @@ namespace RecipeConsoleApp
                 }
             } while (Valid.Equals(false));
 
-            RecipeArray.Remove(RecipeArray[Option]);
+            Console.WriteLine("\nAre you sure you want to delete. "
+                            + "\n(1) Yes"
+                            + "\n(2) No");
+
+            Option = 0;
+
+            do
+            {
+                try
+                {
+                    Valid = true;
+                    Console.WriteLine("Choose an option:");
+                    Option = int.Parse(Console.ReadLine());
+                    if (Option < 1 || Option > 2)
+                    {
+                        Valid = false;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Valid = false;
+                    Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
+                }
+            } while (Valid.Equals(false));
+
+            if (Option.Equals(true))
+            {
+                RecipeArray.Remove(RecipeArray[Option]);
+            }
         }
 
 
@@ -386,7 +427,8 @@ namespace RecipeConsoleApp
 
         //---------------------------------------------------------------------------------------//
         /// <summary>
-        /// Method to do calculations
+        /// Method to do calculations for Scale
+        /// Method converts tbs to cup if value of tbs bigger than 16 and vice versa
         /// </summary>
         public void ScaleUpCalc(int Option, double Constant)
         {
