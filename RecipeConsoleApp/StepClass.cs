@@ -41,14 +41,29 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Console.ForegroundColor = ConsoleColor.Green; 
+
                     Valid = true;
-                    Console.WriteLine("Enter the amount of steps in the recipe: ");
+
+                    Console.WriteLine("Enter the amount of " +
+                        "steps in the recipe: ", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                     this.NumberOfSteps = int.Parse(Console.ReadLine());
+
                 }
                 catch (FormatException)
                 {
+                    Console.ForegroundColor= ConsoleColor.Red;
+
                     Valid = false;
-                    Console.WriteLine("\nSorry, you did not enter a valid number. Please try again.");
+
+                    Console.WriteLine("\nSorry, you did not enter " +
+                        "a valid number. Please try again.", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                 }
             } while (Valid.Equals(false));
         }
@@ -62,19 +77,34 @@ namespace RecipeConsoleApp
         public void GetStepDescription()
         {
             Boolean Valid = true;
-
+ 
             do
             {
                 try
                 {
+                    Console.ForegroundColor = ConsoleColor.Green;
+
                     Valid = true;
-                    Console.WriteLine("Enter the description of step: ");
+
+                    Console.WriteLine("Enter the " +
+                        "description of step: ", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                     this.StepDescription = Console.ReadLine();
+
                 }
                 catch (FormatException)
                 {
+                    Console.ForegroundColor= ConsoleColor.Red;
+
                     Valid = false;
-                    Console.WriteLine("\nSorry, you did not enter a valid description. Please try again.");
+
+                    Console.WriteLine("\nSorry, you did not enter " +
+                        "a valid description. Please try again.", Console.ForegroundColor);
+
+                    Console.ResetColor();   
+
                 }
             } while (Valid.Equals(false));
         }

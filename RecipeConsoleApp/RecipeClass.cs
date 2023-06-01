@@ -62,14 +62,29 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
                     Valid = true;
-                    Console.WriteLine("Enter the name of the recipe: ");
-                    this.RecipeName = Console.ReadLine();
+
+                    Console.WriteLine("Enter the name of the recipe: ", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
+                    this.RecipeName = Console.ReadLine(); 
+                    
                 }
                 catch (FormatException)
                 {
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+
                     Valid = false;
-                    Console.WriteLine("\nSorry, you did not enter a valid name. Please try again.");
+
+                    Console.WriteLine("\nSorry, you did not " +
+                        "enter a valid name. Please try again.", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                 }
             } while (Valid.Equals(false));
         }
@@ -86,29 +101,46 @@ namespace RecipeConsoleApp
         {
             var Recipe = new RecipeClass();
 
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
             Console.WriteLine("\nEnter Recipe information bellow" +
-                              "\n-------------------------------\n");
+                              "\n-------------------------------\n", Console.ForegroundColor);
+
+            Console.ResetColor();
 
             Recipe.GetRecipeName();
+
             Ingredients.GetNumberOfIngredients();
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine("\nType Ingredient Details" +
-                              "\n-----------------------\n");
+                              "\n-----------------------\n", Console.ForegroundColor);
+
+            Console.ResetColor();
 
             for (int i = 0; i < Ingredients.NumberOfIngredients; i++)
             {
                 var NewIngredient = new IngredientsClass();
 
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
                 Console.WriteLine("\nIngredient " + (i + 1) +
-                                  "\n------------\n");
+                                  "\n------------\n", Console.ForegroundColor);
+
+                Console.ResetColor();
 
                 NewIngredient.GetIngredientDetails();
 
                 Recipe.IngredientsArray.Add(NewIngredient);
             }
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine("\nType number of Steps" +
-                              "\n--------------------");
+                              "\n--------------------", Console.ForegroundColor);
+
+            Console.ResetColor();
 
             Steps.GetNumberOfSteps();
 
@@ -116,7 +148,11 @@ namespace RecipeConsoleApp
             {
                 var NewStep = new StepClass();
 
-                Console.WriteLine("\nStep " + (i + 1));
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
+                Console.WriteLine("\nStep " + (i + 1), Console.ForegroundColor);
+
+                Console.ResetColor();
 
                 NewStep.GetStepDescription();
 
@@ -138,14 +174,22 @@ namespace RecipeConsoleApp
             if (RecipeArray.Count.Equals(0))
             {
                 Console.Clear();
-                Console.WriteLine("\nSorry, there is no recipes saved at the moment");     
+
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine("\nSorry, there is no recipes saved at the moment", Console.ForegroundColor);
+
+                Console.ResetColor();
+
                 return;
             }
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine("\nDisplay Recipe" +
                               "\n--------------\n", Console.ForegroundColor);
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ResetColor();
 
             DisplayRecipeNameList();
 
@@ -157,25 +201,49 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
                     Valid = true;
-                    Console.WriteLine("\nType option number from above recipes to diplay: ");
+
+                    Console.WriteLine("\nType option number " +
+                        "from above recipes to diplay: ", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                     Option = int.Parse(Console.ReadLine());
+
                     if ((RecipeArray.Count() - 1) < Option)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
+
                         Valid = false;
-                        Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
+
+                        Console.WriteLine("\nSorry, you did not enter" +
+                            " a valid option. Please try again.", Console.ForegroundColor);
+
+                        Console.ResetColor();
+
                     }
                 }
                 catch (FormatException)
                 {
                     Valid = false;
+
+                    Console.ForegroundColor= ConsoleColor.Red;
+
                     Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
+
+                    Console.ResetColor();
+
                 }
             } while (Valid.Equals(false));
 
             DisplayRecipeName(Option);
+
             DisplayIngredientData(Option);
+
             DisplayRecipeSteps(Option);
+
         }
 
         //---------------------------------------------------------------------------------------//
@@ -187,16 +255,20 @@ namespace RecipeConsoleApp
         {
             int StepArrayLength = this.RecipeArray[Option].StepArray.Count;
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine("\nRecipe Steps" +
                               "\n------------\n", Console.ForegroundColor);
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
-
             for (int i = 0; i < StepArrayLength; i++)
             {
-                Console.WriteLine("Step " + (i + 1) + " :"
+                Console.WriteLine("Step " + (i + 1) + " : "
                     + this.RecipeArray[Option].StepArray[i].StepDescription);
+
             }
+
+            Console.ResetColor();
+
         }
 
         //---------------------------------------------------------------------------------------//
@@ -206,8 +278,13 @@ namespace RecipeConsoleApp
         /// </summary>
         public void DisplayRecipeName(int Number)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine(" (" + Number + ") Recipe name :"
-                + this.RecipeArray[Number].RecipeName);
+                + this.RecipeArray[Number].RecipeName, Console.ForegroundColor);
+
+            Console.ResetColor();
+
         }
 
         //---------------------------------------------------------------------------------------//
@@ -218,10 +295,10 @@ namespace RecipeConsoleApp
         /// </summary>
         public void DisplayIngredientData(int Option)
         {
-                Console.WriteLine("\nDisplay Ingredients" +
-                                  "\n------------------\n", Console.ForegroundColor );
-
             Console.ForegroundColor = ConsoleColor.Yellow;
+
+            Console.WriteLine("\nDisplay Ingredients" +
+                                  "\n------------------\n", Console.ForegroundColor );
 
             int IngredientsArrayLength = this.RecipeArray[Option].IngredientsArray.Count;
 
@@ -231,7 +308,11 @@ namespace RecipeConsoleApp
                         + this.RecipeArray[Option].IngredientsArray[i].IngredientName + " -> "
                         + this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity + " "
                         + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement);
+
                 }
+
+            Console.ResetColor();
+
         }
 
         //---------------------------------------------------------------------------------------//
@@ -245,6 +326,7 @@ namespace RecipeConsoleApp
             for (int i = 0; i < this.RecipeArray.Count; i++)
             {
                 DisplayRecipeName(i);
+
             }
         }
 
@@ -257,18 +339,32 @@ namespace RecipeConsoleApp
         {
             if (RecipeArray.Count.Equals(0))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
+
                 Console.Clear();
-                Console.WriteLine("\nSorry, there is no recipes saved at the moment");
+
+                Console.WriteLine("\nSorry, there is no recipes " +
+                    "saved at the moment", Console.ForegroundColor);
+
+                Console.ResetColor();
+
                 return;
             }
-            Console.WriteLine("\nDelete Recipe" +
-                              "\n-------------\n", Console.ForegroundColor);
 
             Console.ForegroundColor = ConsoleColor.Yellow;
 
+            Console.WriteLine("\nDelete Recipe" +
+                              "\n-------------\n", Console.ForegroundColor);
+
+            Console.ResetColor();
+
             DisplayRecipeNameList();
 
-            Console.WriteLine("Type Recipe option that must be deleted: ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            Console.WriteLine("Type Recipe option that must be deleted: ", Console.ForegroundColor);
+
+            Console.ResetColor();
 
             int Option = 0;
             Boolean Valid = true;
@@ -278,33 +374,60 @@ namespace RecipeConsoleApp
                 try
                 {
                     Valid = true;
+
                     Option = int.Parse(Console.ReadLine());
+
                     if ((RecipeArray.Count() - 1) < Option)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
+
                         Valid = false;
-                        Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
+
+                        Console.WriteLine("\nSorry, you did not " +
+                            "enter a valid option. Please try again.", Console.ForegroundColor);
+
+                        Console.ResetColor();
+
                     }
                 }
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    Console.WriteLine("\nSorry, you did not " +
+                        "enter a valid Option. Please try again.", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                 }
             } while (Valid.Equals(false));
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine("\nAre you sure you want to delete. "
                             + "\n(1) Yes"
-                            + "\n(2) No");
+                            + "\n(2) No", Console.ForegroundColor);
+
+            Console.ResetColor();
 
             Option = 0;
 
             do
             {
                 try
-                {
+                {             
                     Valid = true;
-                    Console.WriteLine("Choose an option:");
+
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
+                    Console.WriteLine("Choose an option:", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                     Option = int.Parse(Console.ReadLine());
+
                     if (Option < 1 || Option > 2)
                     {
                         Valid = false;
@@ -313,7 +436,14 @@ namespace RecipeConsoleApp
                 catch (FormatException)
                 {
                     Valid = false;
-                    Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    Console.WriteLine("\nSorry, you did not enter " +
+                        "a valid Option. Please try again.", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                 }
             } while (Valid.Equals(false));
 
@@ -322,7 +452,6 @@ namespace RecipeConsoleApp
                 RecipeArray.Remove(RecipeArray[Option]);
             }
         }
-
 
         //---------------------------------------------------------------------------------------//
         /// <summary>
@@ -336,19 +465,32 @@ namespace RecipeConsoleApp
             if (RecipeArray.Count.Equals(0))
             {
                 Console.Clear();
-                Console.WriteLine("\nSorry, there is no recipes saved at the moment");
+
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine("\nSorry, there is no recipes " +
+                    "saved at the moment", Console.ForegroundColor);
+
+                Console.ResetColor();
+
                 return;
             }
 
             Boolean Control = false; 
 
             do
-            {                          
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
                 Console.WriteLine("\nScale Up Recipe" +
-                              "\n-------------\n");
+                              "\n-------------\n", Console.ForegroundColor);
+
+                Console.ResetColor();
 
                 Boolean Valid = true;
+
                 int ScaleOption = 0;
+
                 int RecipeOption = 0;
 
                 DisplayRecipeNameList();
@@ -357,49 +499,93 @@ namespace RecipeConsoleApp
                 {
                     try
                     {
-                        Console.WriteLine("\nSelect Recipe option to Scale up:");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+
+                        Console.WriteLine("\nSelect Recipe " +
+                            "option to Scale up:", Console.ForegroundColor);
+
+                        Console.ResetColor();
+
                         Valid = true;
+
                         RecipeOption = int.Parse(Console.ReadLine());
+
                         if ((RecipeArray.Count() - 1) < RecipeOption)
                         {
                             Valid = false;
-                            Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
+
+                            Console.ForegroundColor = ConsoleColor.Red;
+
+                            Console.WriteLine("\nSorry, you did not " +
+                                "enter a valid option. Please try again.", Console.ForegroundColor);
+
+                            Console.ResetColor();
                         }
                     }
                     catch (FormatException)
                     {
                         Valid = false;
-                        Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
+                        
+                        Console.ForegroundColor = ConsoleColor.Red;
+
+                        Console.WriteLine("\nSorry, you did not " +
+                            "enter a valid Option. Please try again.", Console.ForegroundColor);
+
+                        Console.ResetColor();
+
                     }
 
                 } while (Valid.Equals(false));
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
 
                 Console.WriteLine("\n (1) Half 0.5"
                             + "\n (2) Double 2"
                             + "\n (3) Triple"
                             + "\n (4) Reset"
                             + "\n (5) Go back to menu"
-                            + "\n Type Option:");
+                            + "\n Type Option:", Console.ForegroundColor);
+
+                Console.ResetColor();
 
                 do
                 {
                     try
                     {
                         Valid = true;
-                        Console.WriteLine("Select Scale up Options bellow:");
+
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+
+                        Console.WriteLine("Select Scale up Options bellow:", Console.ForegroundColor);
+
+                        Console.ResetColor();
 
                         ScaleOption = int.Parse(Console.ReadLine());
 
                         if (ScaleOption < 1 || ScaleOption > 5)
                         {
-                            Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
+                            Console.ForegroundColor = ConsoleColor.Red;
+
+                            Console.WriteLine("\nSorry, you did not " +
+                                "enter a valid Option. Please try again.", Console.ForegroundColor);
+
+                            Console.ResetColor();
+
                             Valid = false;
+
                         }
                     }
                     catch (FormatException)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
+
                         Valid = false;
-                        Console.WriteLine("\nSorry, you did not enter a valid Option. Please try again.");
+
+                        Console.WriteLine("\nSorry, you did not " +
+                            "enter a valid Option. Please try again.", Console.ForegroundColor);
+
+                        Console.ResetColor();
+
                     }
 
                 } while (Valid.Equals(false));
@@ -454,10 +640,14 @@ namespace RecipeConsoleApp
                     IngUnit = "cups";
                 }
 
-                Console.WriteLine("Ingredient " + (i + 1) + " : "
+                Console.ForegroundColor = ConsoleColor.Green;
+
+                Console.WriteLine("\nIngredient " + (i + 1) + " : "
                     + IngName + " -> "
                     + IngQuantity + " "
-                    + IngUnit);
+                    + IngUnit, Console.ForegroundColor);
+
+                Console.ResetColor();
             }
         }
     }

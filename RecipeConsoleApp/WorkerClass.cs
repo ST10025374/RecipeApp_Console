@@ -30,14 +30,20 @@ namespace RecipeConsoleApp
         /// </summary>
         public void StartWorker()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
             Console.WriteLine("\n --------------------------------------" +
                               "\n |       Welcome to Recipe App        |\n" +
-                              " --------------------------------------\n");
+                              " --------------------------------------\n", Console.ForegroundColor);
+
+            Console.ResetColor();
 
             do
             {
                 DisplayMenu();
+   
                 GetMenuOption();
+
             } while (true);
         }
 
@@ -47,6 +53,8 @@ namespace RecipeConsoleApp
         /// </summary>
         public void DisplayMenu()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
             Console.WriteLine("\n  -------------------------------------\n" +
                               "  | Choose an option from menu bellow |\n" +
                               "  |     (1) Store Recipe              |\n" +
@@ -56,7 +64,9 @@ namespace RecipeConsoleApp
                               "  |     (5) Clear Screen              |\n" +
                               "  |     (6) Terminate and Exit        |\n" +
                               "  -------------------------------------\n" +
-                              "  Type the number next to the option desired");
+                              "  Type the number next to the option desired", Console.ForegroundColor);
+
+            Console.ResetColor();
         }
 
         //--------------------------------------------------------------------------------------------------//
@@ -81,13 +91,29 @@ namespace RecipeConsoleApp
                     if (Option < 1 || Option > 6)
                     {
                         Valid = false;
+
+                        Console.ForegroundColor = ConsoleColor.Red;
+
+                        Console.WriteLine("\nSorry, you did not enter a " +
+                            "valid option. Please try again.", Console.ForegroundColor);
+
+                        Console.ResetColor();
+
                     }
                 }
                 catch (FormatException)
                 {
                     Valid = false;
+
                     Console.Clear();
-                    Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    Console.WriteLine("\nSorry, you did not enter a " +
+                        "valid option. Please try again.", Console.ForegroundColor   );
+                    
+                    Console.ResetColor();
+
                     DisplayMenu();
                 }
             } while (Valid.Equals(false));
@@ -96,27 +122,34 @@ namespace RecipeConsoleApp
             {
                 case 1:
                     Console.Clear();
+
                     Recipe.GetRecipe();
+
                     break;
 
                 case 2:
                         Recipe.DisplayRecipeData();
+
                     break;
 
                 case 3:
                         Recipe.ScaleUp();
+
                     break;
 
                 case 4:
                         Recipe.DeleteRecipe();
+
                     break;
 
                 case 5:
                         Console.Clear();
+
                     break;
 
                 case 6:
                     Exit();
+
                     break;
             }
         }

@@ -52,14 +52,26 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
                     Valid = true;
+
                     Console.WriteLine("Enter the amount of ingredients in the recipe: ");
+
+                    Console.ResetColor();
+
                     this.NumberOfIngredients = int.Parse(Console.ReadLine());
                 }
                 catch (FormatException)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
+
                     Valid = false;
-                    Console.WriteLine("\nSorry, you did not enter a valid number. Please try again.");
+
+                    Console.WriteLine("\nSorry, you did not enter a valid number" +
+                        ". Please try again.", Console.ForegroundColor);
+
+                    Console.ResetColor();
                 }
             } while (Valid.Equals(false));
         }
@@ -78,14 +90,27 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
                     Valid = true;
-                    Console.WriteLine("Enter the name of the ingredient: ");
+
+                    Console.WriteLine("Enter the name of the ingredient: ", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                     this.IngredientName = Console.ReadLine();
                 }
                 catch (FormatException)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
+
                     Valid = false;
-                    Console.WriteLine("\nSorry, you did not enter a valid name. Please try again.");
+
+                    Console.WriteLine("\nSorry, you did not " +
+                        "enter a valid name. Please try again.", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                 }
             } while (Valid.Equals(false));
         }
@@ -104,14 +129,28 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
                     Valid = true;
-                    Console.WriteLine("Enter the quantity of the ingredient: ");
+
+                    Console.WriteLine("Enter the quantity of the ingredient: ", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                     this.IngredientQuantity = double.Parse(Console.ReadLine());
+
                 }
                 catch (FormatException)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
+
                     Valid = false;
-                    Console.WriteLine("\nSorry, you did not enter a valid number. Please try again.");
+
+                    Console.WriteLine("\nSorry, you did not enter a " +
+                        "valid number. Please try again.", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                 }
             } while (Valid.Equals(false));
         }
@@ -134,25 +173,43 @@ namespace RecipeConsoleApp
             {
                 try
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
                     Valid = true;
+
                     Console.WriteLine("Select the unit of measurement by typing the option number: \n" +
                               "[1] Gram (g) \n" +
                               "[2] Tablespoon (tbsp) \n" +
                               "[3] Cup (c) \n" +
-                              "Type option:");
+                              "Type option:", Console.ForegroundColor);
                     
+                    Console.ResetColor();
+
                     Option = int.Parse(Console.ReadLine());
 
                     if (Option < 1 || Option > 3)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
+
                         Valid = false;
-                        Console.WriteLine("\nSorry, you did not select a valid option. Please try again.\n");
+
+                        Console.WriteLine("\nSorry, you did not " +
+                            "select a valid option. Please try again.\n", Console.ForegroundColor);
+
+                        Console.ResetColor();
                     }
                 }
                 catch (FormatException)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
+
                     Valid = false;
-                    Console.WriteLine("\nSorry, you did not select a valid option. Please try again.\n");
+
+                    Console.WriteLine("\nSorry, you did not select a " +
+                        "valid option. Please try again.\n", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
                 }
             } while (Valid.Equals(false));
 
