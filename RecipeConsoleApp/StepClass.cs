@@ -63,7 +63,6 @@ namespace RecipeConsoleApp
                         "a valid number. Please try again.", Console.ForegroundColor);
 
                     Console.ResetColor();
-
                 }
             } while (Valid.Equals(false));
         }
@@ -92,7 +91,6 @@ namespace RecipeConsoleApp
                     Console.ResetColor();
 
                     this.StepDescription = Console.ReadLine();
-
                 }
                 catch (FormatException)
                 {
@@ -104,7 +102,6 @@ namespace RecipeConsoleApp
                         "a valid description. Please try again.", Console.ForegroundColor);
 
                     Console.ResetColor();   
-
                 }
             } while (Valid.Equals(false));
         }

@@ -110,7 +110,6 @@ namespace RecipeConsoleApp
                         "enter a valid name. Please try again.", Console.ForegroundColor);
 
                     Console.ResetColor();
-
                 }
             } while (Valid.Equals(false));
         }
@@ -138,7 +137,6 @@ namespace RecipeConsoleApp
                     Console.ResetColor();
 
                     this.IngredientQuantity = double.Parse(Console.ReadLine());
-
                 }
                 catch (FormatException)
                 {
@@ -150,7 +148,6 @@ namespace RecipeConsoleApp
                         "valid number. Please try again.", Console.ForegroundColor);
 
                     Console.ResetColor();
-
                 }
             } while (Valid.Equals(false));
         }
@@ -209,7 +206,6 @@ namespace RecipeConsoleApp
                         "valid option. Please try again.\n", Console.ForegroundColor);
 
                     Console.ResetColor();
-
                 }
             } while (Valid.Equals(false));
 

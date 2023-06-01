@@ -157,8 +157,7 @@ namespace RecipeConsoleApp
                 NewStep.GetStepDescription();
 
                 Recipe.StepArray.Add(NewStep);
-            }
-            
+            }      
             this.RecipeArray.Add(Recipe);
         }
 
@@ -222,7 +221,6 @@ namespace RecipeConsoleApp
                             " a valid option. Please try again.", Console.ForegroundColor);
 
                         Console.ResetColor();
-
                     }
                 }
                 catch (FormatException)
@@ -234,7 +232,6 @@ namespace RecipeConsoleApp
                     Console.WriteLine("\nSorry, you did not enter a valid option. Please try again.");
 
                     Console.ResetColor();
-
                 }
             } while (Valid.Equals(false));
 
@@ -243,7 +240,6 @@ namespace RecipeConsoleApp
             DisplayIngredientData(Option);
 
             DisplayRecipeSteps(Option);
-
         }
 
         //---------------------------------------------------------------------------------------//
@@ -266,9 +262,7 @@ namespace RecipeConsoleApp
                     + this.RecipeArray[Option].StepArray[i].StepDescription);
 
             }
-
             Console.ResetColor();
-
         }
 
         //---------------------------------------------------------------------------------------//
@@ -284,7 +278,6 @@ namespace RecipeConsoleApp
                 + this.RecipeArray[Number].RecipeName, Console.ForegroundColor);
 
             Console.ResetColor();
-
         }
 
         //---------------------------------------------------------------------------------------//
@@ -310,9 +303,7 @@ namespace RecipeConsoleApp
                         + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement);
 
                 }
-
             Console.ResetColor();
-
         }
 
         //---------------------------------------------------------------------------------------//
@@ -326,7 +317,6 @@ namespace RecipeConsoleApp
             for (int i = 0; i < this.RecipeArray.Count; i++)
             {
                 DisplayRecipeName(i);
-
             }
         }
 
@@ -387,7 +377,6 @@ namespace RecipeConsoleApp
                             "enter a valid option. Please try again.", Console.ForegroundColor);
 
                         Console.ResetColor();
-
                     }
                 }
                 catch (FormatException)
@@ -400,7 +389,6 @@ namespace RecipeConsoleApp
                         "enter a valid Option. Please try again.", Console.ForegroundColor);
 
                     Console.ResetColor();
-
                 }
             } while (Valid.Equals(false));
 
@@ -443,7 +431,6 @@ namespace RecipeConsoleApp
                         "a valid Option. Please try again.", Console.ForegroundColor);
 
                     Console.ResetColor();
-
                 }
             } while (Valid.Equals(false));
 
@@ -532,7 +519,6 @@ namespace RecipeConsoleApp
                             "enter a valid Option. Please try again.", Console.ForegroundColor);
 
                         Console.ResetColor();
-
                     }
 
                 } while (Valid.Equals(false));
@@ -572,7 +558,6 @@ namespace RecipeConsoleApp
                             Console.ResetColor();
 
                             Valid = false;
-
                         }
                     }
                     catch (FormatException)
@@ -585,7 +570,6 @@ namespace RecipeConsoleApp
                             "enter a valid Option. Please try again.", Console.ForegroundColor);
 
                         Console.ResetColor();
-
                     }
 
                 } while (Valid.Equals(false));

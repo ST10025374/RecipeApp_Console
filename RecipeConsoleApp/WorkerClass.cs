@@ -98,7 +98,6 @@ namespace RecipeConsoleApp
                             "valid option. Please try again.", Console.ForegroundColor);
 
                         Console.ResetColor();
-
                     }
                 }
                 catch (FormatException)
