@@ -28,6 +28,16 @@ namespace RecipeConsoleApp
         /// </summary>
         public string UnitOfMeasurement { get; set; } = string.Empty;
 
+        /// <summary>
+        /// Store Ingredient number of Calories
+        /// </summary>
+        public int IngredientCalories { get; set; } = 0;
+
+        /// <summary>
+        /// Store Ingredient Food Group
+        /// </summary>
+        public string IngredientFoodGroup { get; set; } = string.Empty;
+
         //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Default Constructor
@@ -56,7 +66,7 @@ namespace RecipeConsoleApp
 
                     Valid = true;
 
-                    Console.WriteLine("Enter the amount of ingredients in the recipe: ");
+                    Console.WriteLine("\nEnter the amount of ingredients in the recipe: ");
 
                     Console.ResetColor();
 
@@ -225,6 +235,139 @@ namespace RecipeConsoleApp
 
         //---------------------------------------------------------------------------------------//
         /// <summary>
+        /// Method to get calories from user
+        /// if incorrect input is typed display warning and ask input again
+        /// </summary>
+        public void GetIngredientCalories()
+        {
+            Boolean Valid = true;
+
+            do
+            {
+                try
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
+                    Valid = true;
+
+                    Console.WriteLine("\nEnter the number of calories of " +
+                        "the ingredient: ", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
+                    this.IngredientQuantity = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    Valid = false;
+
+                    Console.WriteLine("\nSorry, you did not enter a " +
+                        "valid number. Please try again.\n", Console.ForegroundColor);
+
+                    Console.ResetColor();
+                }
+            } while (Valid.Equals(false));
+        }
+
+        /// <summary>
+        /// Method to get Ingredient Food Group
+        /// Displays options to user and user inputs desired option
+        /// </summary>
+        public void GetIngredientFoodGroup()
+        {
+            Boolean Valid = true;
+
+            int Option = 0;
+
+            do
+            {
+                try
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
+                    Valid = true;
+
+                    Console.WriteLine("\nSelect the food group that the " +
+                        "ingredient belongs to by typing the option number: \n" +
+                              "[1] Vegetable \n" +
+                              "[2] Fruit \n" +
+                              "[3] Grain \n" +
+                              "[4] Dairy \n" +
+                              "[5] Protein \n" +
+                              "[6] Spice \n" +
+                              "[7] Herb \n" +
+                              "[8] Oil \n" +
+                              "Type option:", Console.ForegroundColor);
+
+                    Console.ResetColor();
+
+                    Option = int.Parse(Console.ReadLine());
+
+                    if (Option < 1 || Option > 8)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+
+                        Valid = false;
+
+                        Console.WriteLine("\nSorry, you did not " +
+                            "select a valid option. Please try again.\n", Console.ForegroundColor);
+
+                        Console.ResetColor();
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    Valid = false;
+
+                    Console.WriteLine("\nSorry, you did not select a " +
+                        "valid option. Please try again.\n", Console.ForegroundColor);
+
+                    Console.ResetColor();
+                }
+            } while (Valid.Equals(false));
+
+            switch (Option)
+            {
+                case 1:
+                    this.IngredientFoodGroup = "Vegetable";
+                    break;
+
+                case 2:
+                    this.UnitOfMeasurement = "Fruit";
+                    break;
+
+                case 3:
+                    this.UnitOfMeasurement = "Grain";
+                    break;
+
+                case 4:
+                    this.IngredientFoodGroup = "Dairy";
+                     break;
+
+                case 5:
+                    this.UnitOfMeasurement = "Protein";
+                    break;
+
+                case 6:
+                    this.UnitOfMeasurement = "Spice";
+                break;
+
+                case 7:
+                    this.IngredientFoodGroup = "Herb";
+                break;   
+            
+                case 8:
+                    this.IngredientFoodGroup = "Oil";
+                break;
+            }
+        }
+
+        //---------------------------------------------------------------------------------------//
+        /// <summary>
         /// Ask User for Ingredients Details calling methods to get Inputs
         /// </summary>
         public void GetIngredientDetails()
@@ -232,6 +375,8 @@ namespace RecipeConsoleApp
             GetIngredientName();
             GetUnitOfMeasurement();
             GetIngredientQuantity();
+            GetIngredientCalories();
+
         }
     }
 }
