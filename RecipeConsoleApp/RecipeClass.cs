@@ -15,6 +15,12 @@ namespace RecipeConsoleApp
         public string RecipeName { get; set; } = string.Empty;
 
         /// <summary>
+        /// Store recipe name
+        /// </summary>
+        public int TotalCalories { get; set; } = 0;
+
+
+        /// <summary>
         /// Instance of Ingredients class
         /// </summary>
         public IngredientsClass Ingredients = new IngredientsClass();
@@ -130,6 +136,8 @@ namespace RecipeConsoleApp
                 Console.ResetColor();
 
                 NewIngredient.GetIngredientDetails();
+
+                SumCalories(NewIngredient.IngredientCalories);
 
                 Recipe.IngredientsArray.Add(NewIngredient);
             }
@@ -299,8 +307,15 @@ namespace RecipeConsoleApp
                     Console.WriteLine("Ingredient " + (i + 1) + " : "
                         + this.RecipeArray[Option].IngredientsArray[i].IngredientName + " -> "
                         + this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity + " "
-                        + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement);
+                        + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement + " "
+                        + this.RecipeArray[Option].IngredientsArray[i].IngredientFoodGroup);
                 }
+
+            Console.WriteLine("\nTotal Calories" +
+                              "\n------------------\n", Console.ForegroundColor);
+
+            Console.WriteLine("Total calories in Recipe: " + this.TotalCalories);
+
             Console.ResetColor();
         }
 
@@ -645,6 +660,16 @@ namespace RecipeConsoleApp
 
                 Console.ResetColor();
             }
+        }
+
+        //---------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Method to sum all calories in Recipe
+        /// Method receives value from Loop in GetRecipe Method to sum and keeps on summing up
+        /// </summary>
+        public void SumCalories(int Calories)
+        {
+            this.TotalCalories = this.TotalCalories  + Calories;         
         }
     }
 }

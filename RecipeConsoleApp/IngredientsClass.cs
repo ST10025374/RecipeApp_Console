@@ -373,10 +373,14 @@ namespace RecipeConsoleApp
         public void GetIngredientDetails()
         {            
             GetIngredientName();
+
             GetUnitOfMeasurement();
+
             GetIngredientQuantity();
+
             GetIngredientCalories();
 
+            GetIngredientFoodGroup();
         }
     }
 }
