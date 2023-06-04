@@ -15,12 +15,6 @@ namespace RecipeConsoleApp
         public string RecipeName { get; set; } = string.Empty;
 
         /// <summary>
-        /// Store recipe name
-        /// </summary>
-        public int TotalCalories { get; set; } = 0;
-
-
-        /// <summary>
         /// Instance of Ingredients class
         /// </summary>
         public IngredientsClass Ingredients = new IngredientsClass();
@@ -137,8 +131,6 @@ namespace RecipeConsoleApp
 
                 NewIngredient.GetIngredientDetails();
 
-                SumCalories(NewIngredient.IngredientCalories);
-
                 Recipe.IngredientsArray.Add(NewIngredient);
             }
 
@@ -190,7 +182,7 @@ namespace RecipeConsoleApp
                 return;
             }
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Cyan;
 
             Console.WriteLine("\nDisplay Recipe" +
                               "\n--------------\n", Console.ForegroundColor);
@@ -242,9 +234,15 @@ namespace RecipeConsoleApp
                 }
             } while (Valid.Equals(false));
 
-            Console.WriteLine("\nRecipe Name: " +
-                              this.RecipeArray[Option].RecipeName +                  
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            Console.WriteLine("\nRecipe Name: " +             
                               "\n------------\n", Console.ForegroundColor);
+
+            Console.WriteLine("Recipe Name: " 
+                + this.RecipeArray[Option].RecipeName, Console.ForegroundColor);
+
+            Console.ResetColor();
 
             DisplayIngredientData(Option);
 
@@ -308,15 +306,15 @@ namespace RecipeConsoleApp
                 {
                     Console.WriteLine("Ingredient " + (i + 1) + " : "
                         + this.RecipeArray[Option].IngredientsArray[i].IngredientName + " -> "
-                        + this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity + " "
-                        + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement + " "
+                        + this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity + " ("
+                        + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement + "  "
                         + this.RecipeArray[Option].IngredientsArray[i].IngredientFoodGroup);
                 }
 
             Console.WriteLine("\nTotal Calories" +
                               "\n------------------\n", Console.ForegroundColor);
 
-            Console.WriteLine("Total calories in Recipe: " + this.TotalCalories);
+            Console.WriteLine("Total calories in Recipe: " + SumCalories(Option));
 
             Console.ResetColor();
         }
@@ -667,11 +665,18 @@ namespace RecipeConsoleApp
         //---------------------------------------------------------------------------------------//
         /// <summary>
         /// Method to sum all calories in Recipe
-        /// Method receives value from Loop in GetRecipe Method to sum and keeps on summing up
+        /// Method receives index from RecipeArray List to sum up ingredients
+        /// loops thru list to sum all values 
         /// </summary>
-        public void SumCalories(int Calories)
+        public int SumCalories(int Index)
         {
-            this.TotalCalories = this.TotalCalories  + Calories;         
+            int Sum = 0;
+
+           for (int i = 0; i < this.RecipeArray[Index].IngredientsArray.Count; i++)
+           {
+                Sum = Sum + this.RecipeArray[Index].IngredientsArray[i].IngredientCalories;              
+           }
+            return Sum;
         }
     }
 }

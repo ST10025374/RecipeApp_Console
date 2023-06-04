@@ -337,11 +337,11 @@ namespace RecipeConsoleApp
                     break;
 
                 case 2:
-                    this.UnitOfMeasurement = "Fruit";
+                    this.IngredientFoodGroup = "Fruit";
                     break;
 
                 case 3:
-                    this.UnitOfMeasurement = "Grain";
+                    this.IngredientFoodGroup = "Grain";
                     break;
 
                 case 4:
@@ -349,11 +349,11 @@ namespace RecipeConsoleApp
                      break;
 
                 case 5:
-                    this.UnitOfMeasurement = "Protein";
+                    this.IngredientFoodGroup = "Protein";
                     break;
 
                 case 6:
-                    this.UnitOfMeasurement = "Spice";
+                    this.IngredientFoodGroup = "Spice";
                 break;
 
                 case 7:
