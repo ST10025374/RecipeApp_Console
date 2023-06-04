@@ -255,7 +255,7 @@ namespace RecipeConsoleApp
 
                     Console.ResetColor();
 
-                    this.IngredientQuantity = int.Parse(Console.ReadLine());
+                    this.IngredientCalories = int.Parse(Console.ReadLine());
                 }
                 catch (FormatException)
                 {
@@ -290,7 +290,7 @@ namespace RecipeConsoleApp
                     Valid = true;
 
                     Console.WriteLine("\nSelect the food group that the " +
-                        "ingredient belongs to by typing the option number: \n" +
+                        "ingredient belongs to, by typing the option number: \n" +
                               "[1] Vegetable \n" +
                               "[2] Fruit \n" +
                               "[3] Grain \n" +

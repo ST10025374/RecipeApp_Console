@@ -242,7 +242,9 @@ namespace RecipeConsoleApp
                 }
             } while (Valid.Equals(false));
 
-            DisplayRecipeName(Option);
+            Console.WriteLine("\nRecipe Name: " +
+                              this.RecipeArray[Option].RecipeName +                  
+                              "\n------------\n", Console.ForegroundColor);
 
             DisplayIngredientData(Option);
 
@@ -297,7 +299,7 @@ namespace RecipeConsoleApp
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
 
-            Console.WriteLine("\nDisplay Ingredients" +
+            Console.WriteLine("\nIngredients" +
                                   "\n------------------\n", Console.ForegroundColor );
 
             int IngredientsArrayLength = this.RecipeArray[Option].IngredientsArray.Count;
