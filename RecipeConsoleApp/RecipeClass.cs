@@ -239,7 +239,7 @@ namespace RecipeConsoleApp
             Console.WriteLine("\nRecipe Name: " +             
                               "\n------------\n", Console.ForegroundColor);
 
-            Console.WriteLine("Recipe Name: " 
+            Console.WriteLine("Name: " 
                 + this.RecipeArray[Option].RecipeName, Console.ForegroundColor);
 
             Console.ResetColor();
@@ -292,6 +292,7 @@ namespace RecipeConsoleApp
         /// Display Ingredients details
         /// Name and Quantity and unit of meausurament
         /// Loops thru length of Ingredients array
+        /// Ing Quantity is converted to only one decimal place
         /// </summary>
         public void DisplayIngredientData(int Option)
         {
@@ -307,7 +308,7 @@ namespace RecipeConsoleApp
                     Console.WriteLine("Ingredient " + (i + 1) + " : "
                         + this.RecipeArray[Option].IngredientsArray[i].IngredientName + " -> "
                         + this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity + " ("
-                        + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement + "  "
+                        + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement + ")  "
                         + this.RecipeArray[Option].IngredientsArray[i].IngredientFoodGroup);
                 }
 
@@ -484,7 +485,7 @@ namespace RecipeConsoleApp
 
             do
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.ForegroundColor = ConsoleColor.Cyan;
 
                 Console.WriteLine("\nScale Up Recipe" +
                               "\n-------------\n", Console.ForegroundColor);
@@ -620,6 +621,7 @@ namespace RecipeConsoleApp
         /// <summary>
         /// Method to do calculations for Scale
         /// Method converts tbs to cup if value of tbs bigger than 16 and vice versa
+        /// Method also displays result of calculations
         /// </summary>
         public void ScaleUpCalc(int Option, double Constant)
         {
@@ -655,7 +657,7 @@ namespace RecipeConsoleApp
 
                 Console.WriteLine("\nIngredient " + (i + 1) + " : "
                     + IngName + " -> "
-                    + IngQuantity + " "
+                    + IngQuantity.ToString("0.0") + " "
                     + IngUnit, Console.ForegroundColor);
 
                 Console.ResetColor();
