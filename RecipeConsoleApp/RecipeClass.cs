@@ -309,9 +309,12 @@ namespace RecipeConsoleApp
         /// Method to display recipe names list
         /// Loop thru Recipe Array
         /// This method is called in Display Recipe Data
+        /// Compares two Recipe objects based on their Name property using the string.Compare method. 
         /// </summary>
         public void DisplayRecipeNameList()
-        {           
+        {
+            this.RecipeArray.Sort((Recipe1, Recipe2) => string.Compare(Recipe1.RecipeName, Recipe2.RecipeName));
+
             for (int i = 0; i < this.RecipeArray.Count; i++)
             {
                 DisplayRecipeName(i);
@@ -488,7 +491,7 @@ namespace RecipeConsoleApp
                         Console.ForegroundColor = ConsoleColor.Yellow;
 
                         Console.WriteLine("\nSelect Recipe " +
-                            "option to Scale up:", Console.ForegroundColor);
+                            "option to Scale up: ", Console.ForegroundColor);
 
                         Console.ResetColor();
 
@@ -528,8 +531,7 @@ namespace RecipeConsoleApp
                             + "\n (2) Double 2"
                             + "\n (3) Triple"
                             + "\n (4) Reset"
-                            + "\n (5) Go back to menu"
-                            + "\n Type Option:", Console.ForegroundColor);
+                            + "\n (5) Go back to menu\n", Console.ForegroundColor);
 
                 Console.ResetColor();
 

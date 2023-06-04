@@ -132,7 +132,7 @@ namespace RecipeConsoleApp
 
                     Valid = true;
 
-                    Console.WriteLine("Enter the quantity of the ingredient: ", Console.ForegroundColor);
+                    Console.WriteLine("\nEnter the quantity of the ingredient: ", Console.ForegroundColor);
 
                     Console.ResetColor();
 
@@ -174,7 +174,7 @@ namespace RecipeConsoleApp
 
                     Valid = true;
 
-                    Console.WriteLine("Select the unit of measurement by typing the option number: \n" +
+                    Console.WriteLine("\nSelect the unit of measurement by typing the option number: \n" +
                               "[1] Gram (g) \n" +
                               "[2] Tablespoon (tbsp) \n" +
                               "[3] Cup (c) \n" +
