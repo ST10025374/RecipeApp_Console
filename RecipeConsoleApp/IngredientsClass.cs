@@ -69,7 +69,7 @@ namespace RecipeConsoleApp
                     Valid = false;
 
                     Console.WriteLine("\nSorry, you did not enter a valid number" +
-                        ". Please try again.", Console.ForegroundColor);
+                        ". Please try again.\n", Console.ForegroundColor);
 
                     Console.ResetColor();
                 }
@@ -145,7 +145,7 @@ namespace RecipeConsoleApp
                     Valid = false;
 
                     Console.WriteLine("\nSorry, you did not enter a " +
-                        "valid number. Please try again.", Console.ForegroundColor);
+                        "valid number. Please try again.\n", Console.ForegroundColor);
 
                     Console.ResetColor();
                 }

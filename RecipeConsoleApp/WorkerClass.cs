@@ -43,7 +43,6 @@ namespace RecipeConsoleApp
                 DisplayMenu();
    
                 GetMenuOption();
-
             } while (true);
         }
 

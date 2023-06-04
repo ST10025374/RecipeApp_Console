@@ -75,7 +75,6 @@ namespace RecipeConsoleApp
                 }
                 catch (FormatException)
                 {
-
                     Console.ForegroundColor = ConsoleColor.Red;
 
                     Valid = false;
@@ -115,7 +114,7 @@ namespace RecipeConsoleApp
             Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine("\nType Ingredient Details" +
-                              "\n-----------------------\n", Console.ForegroundColor);
+                              "\n-----------------------", Console.ForegroundColor);
 
             Console.ResetColor();
 
@@ -274,7 +273,7 @@ namespace RecipeConsoleApp
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
 
-            Console.WriteLine(" (" + Number + ") Recipe name :"
+            Console.WriteLine(" (" + Number + ") Recipe name: "
                 + this.RecipeArray[Number].RecipeName, Console.ForegroundColor);
 
             Console.ResetColor();
@@ -301,7 +300,6 @@ namespace RecipeConsoleApp
                         + this.RecipeArray[Option].IngredientsArray[i].IngredientName + " -> "
                         + this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity + " "
                         + this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement);
-
                 }
             Console.ResetColor();
         }
@@ -356,7 +354,8 @@ namespace RecipeConsoleApp
 
             Console.ResetColor();
 
-            int Option = 0;
+            int DeleteOption = 0;
+
             Boolean Valid = true;
 
             do
@@ -365,9 +364,9 @@ namespace RecipeConsoleApp
                 {
                     Valid = true;
 
-                    Option = int.Parse(Console.ReadLine());
+                    DeleteOption = int.Parse(Console.ReadLine());
 
-                    if ((RecipeArray.Count() - 1) < Option)
+                    if ((RecipeArray.Count() - 1) < DeleteOption)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
 
@@ -400,7 +399,7 @@ namespace RecipeConsoleApp
 
             Console.ResetColor();
 
-            Option = 0;
+            int Option = 0;
 
             do
             {
@@ -434,9 +433,9 @@ namespace RecipeConsoleApp
                 }
             } while (Valid.Equals(false));
 
-            if (Option.Equals(true))
+            if (Option.Equals(1))
             {
-                RecipeArray.Remove(RecipeArray[Option]);
+                RecipeArray.Remove(RecipeArray[DeleteOption]);
             }
         }
 
@@ -578,18 +577,23 @@ namespace RecipeConsoleApp
                 {
                     case 1:
                         ScaleUpCalc(RecipeOption, 0.5);
+
                         break;
                     case 2:
                         ScaleUpCalc(RecipeOption, 2);
+
                         break;
                     case 3:
                         ScaleUpCalc(RecipeOption, 3);
+
                         break;
                     case 4:
-                        DisplayIngredientData(RecipeOption);
+                        ScaleUpCalc(RecipeOption, 1);
+
                         break;
                     case 5:
                         Control = true;
+
                         break;
                 }
             } while (Control.Equals(false));
@@ -607,20 +611,26 @@ namespace RecipeConsoleApp
             for (int i = 0; i < IngredientsArrayLength; i++)
             {
                 string IngName = this.RecipeArray[Option].IngredientsArray[i].IngredientName;
+
                 double IngQuantity = (this.RecipeArray[Option].IngredientsArray[i].IngredientQuantity) * Constant;
+                
                 string IngUnit = this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement;
 
                 if ((IngQuantity < 1) && IngUnit.Equals("cups"))
                 {
                     double IngQuantityCalc = IngQuantity * 16;
+
                     IngQuantity = IngQuantityCalc;
+
                     IngUnit = "tablespoons";
                 }
 
                 if ((IngQuantity >= 16) && IngUnit.Equals("tablespoons"))
                 {
                     double IngQuantityCalc = IngQuantity / 16;
+
                     IngQuantity = IngQuantityCalc;
+
                     IngUnit = "cups";
                 }
 
