@@ -299,13 +299,14 @@ namespace RecipeConsoleApp
                               "[6] Spice \n" +
                               "[7] Herb \n" +
                               "[8] Oil \n" +
+                              "[9] Water \n" +
                               "Type option:", Console.ForegroundColor);
 
                     Console.ResetColor();
 
                     Option = int.Parse(Console.ReadLine());
 
-                    if (Option < 1 || Option > 8)
+                    if (Option < 1 || Option > 9)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
 
@@ -354,15 +355,19 @@ namespace RecipeConsoleApp
 
                 case 6:
                     this.IngredientFoodGroup = "Spice";
-                break;
+                    break;
 
                 case 7:
                     this.IngredientFoodGroup = "Herb";
-                break;   
+                    break;   
             
                 case 8:
                     this.IngredientFoodGroup = "Oil";
-                break;
+                    break;
+
+                case 9:
+                    this.IngredientFoodGroup = "Water";
+                    break;
             }
         }
 

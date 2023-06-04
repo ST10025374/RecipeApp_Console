@@ -7,6 +7,12 @@ using System.Xml.Schema;
 
 namespace RecipeConsoleApp
 {
+    /// <summary>
+    /// Delegate
+    /// </summary>
+    /// <param name="message"></param>
+    delegate void MyDelegate(string Message);
+
     public class RecipeClass
     {
         /// <summary>
@@ -95,6 +101,7 @@ namespace RecipeConsoleApp
         /// Will loop for the number of ingredient specified
         /// Loop for amount of steps and keeps asking for description and store in StepArray
         /// Store all Data in Recipe Object including Arrays
+        /// If user while adding calories adds up to more than 300 display message
         /// </summary>
         public void GetRecipe()
         {
@@ -118,6 +125,8 @@ namespace RecipeConsoleApp
 
             Console.ResetColor();
 
+            int Sum = 0;
+
             for (int i = 0; i < Ingredients.NumberOfIngredients; i++)
             {
                 var NewIngredient = new IngredientsClass();
@@ -130,6 +139,13 @@ namespace RecipeConsoleApp
                 Console.ResetColor();
 
                 NewIngredient.GetIngredientDetails();
+
+                Sum += NewIngredient.IngredientCalories;
+
+                if (Sum > 300)
+                {
+                    CaloriesWarning();
+                }
 
                 Recipe.IngredientsArray.Add(NewIngredient);
             }
@@ -292,7 +308,6 @@ namespace RecipeConsoleApp
         /// Display Ingredients details
         /// Name and Quantity and unit of meausurament
         /// Loops thru length of Ingredients array
-        /// Ing Quantity is converted to only one decimal place
         /// </summary>
         public void DisplayIngredientData(int Option)
         {
@@ -622,6 +637,7 @@ namespace RecipeConsoleApp
         /// Method to do calculations for Scale
         /// Method converts tbs to cup if value of tbs bigger than 16 and vice versa
         /// Method also displays result of calculations
+        /// Ing Quantity is converted to only one decimal place
         /// </summary>
         public void ScaleUpCalc(int Option, double Constant)
         {
@@ -672,13 +688,39 @@ namespace RecipeConsoleApp
         /// </summary>
         public int SumCalories(int Index)
         {
-            int Sum = 0;
+           int Sum = 0;
 
            for (int i = 0; i < this.RecipeArray[Index].IngredientsArray.Count; i++)
            {
                 Sum = Sum + this.RecipeArray[Index].IngredientsArray[i].IngredientCalories;              
            }
             return Sum;
+        }
+
+        //---------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Method to send message to user using delegates
+        /// Delegate is declared and message is passed to method
+        /// </summary>
+        public void CaloriesWarning()
+        {
+            MyDelegate UserMessage = new MyDelegate(DisplayMessage);
+
+            UserMessage("\nRecipe Exceeds 300 Calories\n");
+        }
+
+        //---------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Displays message to User
+        /// </summary>
+        /// <param name="Message"></param>
+        public void DisplayMessage(string Message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+
+            Console.WriteLine(Message, Console.ForegroundColor);
+
+            Console.ResetColor();
         }
     }
 }
