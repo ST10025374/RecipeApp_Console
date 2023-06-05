@@ -63,7 +63,7 @@ namespace RecipeConsoleApp
                               "  |     (5) Clear Screen              |\n" +
                               "  |     (6) Terminate and Exit        |\n" +
                               "  -------------------------------------\n" +
-                              "  Type the number next to the option desired", Console.ForegroundColor);
+                              "  Type the number next to the option desired: ", Console.ForegroundColor);
 
             Console.ResetColor();
         }

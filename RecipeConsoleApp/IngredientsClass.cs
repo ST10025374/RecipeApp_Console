@@ -222,13 +222,13 @@ namespace RecipeConsoleApp
             switch (Option)
             {
                 case 1:
-                    this.UnitOfMeasurement = "grams";
+                    this.UnitOfMeasurement = "g";
                     break;
                 case 2:
-                    this.UnitOfMeasurement = "tablespoons";
+                    this.UnitOfMeasurement = "tbsp";
                     break;
                 case 3:
-                    this.UnitOfMeasurement = "cups";
+                    this.UnitOfMeasurement = "C";
                     break;
             }
         }

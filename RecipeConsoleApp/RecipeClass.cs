@@ -142,12 +142,12 @@ namespace RecipeConsoleApp
 
                 Sum += NewIngredient.IngredientCalories;
 
-                if (Sum > 300)
-                {
-                    CaloriesWarning();
-                }
-
                 Recipe.IngredientsArray.Add(NewIngredient);
+            }
+
+            if (Sum > 300)
+            {
+                CaloriesWarning();
             }
 
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -308,13 +308,14 @@ namespace RecipeConsoleApp
         /// Display Ingredients details
         /// Name and Quantity and unit of meausurament
         /// Loops thru length of Ingredients array
+        /// Nested ifs display explanation for range of calories
         /// </summary>
         public void DisplayIngredientData(int Option)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine("\nIngredients" +
-                                  "\n------------------\n", Console.ForegroundColor );
+                              "\n-----------\n", Console.ForegroundColor );
 
             int IngredientsArrayLength = this.RecipeArray[Option].IngredientsArray.Count;
 
@@ -328,9 +329,30 @@ namespace RecipeConsoleApp
                 }
 
             Console.WriteLine("\nTotal Calories" +
-                              "\n------------------\n", Console.ForegroundColor);
+                              "\n--------------\n", Console.ForegroundColor);
 
-            Console.WriteLine("Total calories in Recipe: " + SumCalories(Option));
+            Console.WriteLine("Calories: " + SumCalories(Option), Console.ForegroundColor);
+
+            if (SumCalories(Option) < 300)
+            {
+                Console.WriteLine("\nNote: Very low calories ideial " +
+                    "for a breakfast on a diet", Console.ForegroundColor);
+            }
+            else if (SumCalories(Option) >= 300 && SumCalories(Option) <= 500)
+            {
+                Console.WriteLine("\nNote: Low calories, ideial for a " +
+                    "ligth lunch ", Console.ForegroundColor);
+            }
+            else if (SumCalories(Option) > 500 && SumCalories(Option) <= 800)
+            {
+                Console.WriteLine("\nNote: Moderate calories, balanced meal " +
+                    "for an after workout", Console.ForegroundColor);
+            }
+            else
+            {
+                Console.WriteLine("\nNote: High calories, Ideial for building " +
+                    "muscle in bulking season", Console.ForegroundColor);
+            }
 
             Console.ResetColor();
         }
@@ -373,7 +395,7 @@ namespace RecipeConsoleApp
                 return;
             }
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Cyan;
 
             Console.WriteLine("\nDelete Recipe" +
                               "\n-------------\n", Console.ForegroundColor);
@@ -651,22 +673,22 @@ namespace RecipeConsoleApp
                 
                 string IngUnit = this.RecipeArray[Option].IngredientsArray[i].UnitOfMeasurement;
 
-                if ((IngQuantity < 1) && IngUnit.Equals("cups"))
+                if ((IngQuantity < 1) && IngUnit.Equals("C"))
                 {
                     double IngQuantityCalc = IngQuantity * 16;
 
                     IngQuantity = IngQuantityCalc;
 
-                    IngUnit = "tablespoons";
+                    IngUnit = "tbsp";
                 }
 
-                if ((IngQuantity >= 16) && IngUnit.Equals("tablespoons"))
+                if ((IngQuantity >= 16) && IngUnit.Equals("tbsp"))
                 {
                     double IngQuantityCalc = IngQuantity / 16;
 
                     IngQuantity = IngQuantityCalc;
 
-                    IngUnit = "cups";
+                    IngUnit = "C";
                 }
 
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -706,7 +728,7 @@ namespace RecipeConsoleApp
         {
             MyDelegate UserMessage = new MyDelegate(DisplayMessage);
 
-            UserMessage("\nRecipe Exceeds 300 Calories\n");
+            UserMessage("\n--> Recipe Exceeds 300 Calories <--\nNote: High Caloric food can lead to weigth gain");
         }
 
         //---------------------------------------------------------------------------------------//
