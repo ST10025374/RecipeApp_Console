@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
@@ -331,19 +332,21 @@ namespace RecipeConsoleApp
             Console.WriteLine("\nTotal Calories" +
                               "\n--------------\n", Console.ForegroundColor);
 
-            Console.WriteLine("Calories: " + SumCalories(Option), Console.ForegroundColor);
+            int Sum = SumCalories(Option, this.RecipeArray);
 
-            if (SumCalories(Option) < 300)
+            Console.WriteLine("Calories: " + Sum, Console.ForegroundColor);
+
+            if (Sum < 300)
             {
                 Console.WriteLine("\nNote: Very low calories ideial " +
                     "for a breakfast on a diet", Console.ForegroundColor);
             }
-            else if (SumCalories(Option) >= 300 && SumCalories(Option) <= 500)
+            else if (Sum >= 300 && Sum <= 500)
             {
                 Console.WriteLine("\nNote: Low calories, ideial for a " +
                     "ligth lunch ", Console.ForegroundColor);
             }
-            else if (SumCalories(Option) > 500 && SumCalories(Option) <= 800)
+            else if (Sum > 500 && Sum <= 800)
             {
                 Console.WriteLine("\nNote: Moderate calories, balanced meal " +
                     "for an after workout", Console.ForegroundColor);
@@ -708,13 +711,13 @@ namespace RecipeConsoleApp
         /// Method receives index from RecipeArray List to sum up ingredients
         /// loops thru list to sum all values 
         /// </summary>
-        public int SumCalories(int Index)
+        public int SumCalories(int Index, List<RecipeClass> RecipeArray)
         {
            int Sum = 0;
 
-           for (int i = 0; i < this.RecipeArray[Index].IngredientsArray.Count; i++)
+           for (int i = 0; i < RecipeArray[Index].IngredientsArray.Count; i++)
            {
-                Sum = Sum + this.RecipeArray[Index].IngredientsArray[i].IngredientCalories;              
+                Sum = Sum + RecipeArray[Index].IngredientsArray[i].IngredientCalories;              
            }
             return Sum;
         }
