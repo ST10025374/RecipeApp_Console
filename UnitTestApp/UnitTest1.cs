@@ -17,7 +17,11 @@ namespace UnitTestApp
 
         //--------------------------------------------------------------------------------------------------//
         /// <summary>
-        /// 
+        /// Test SumCalories Method to check if it is correctly summing
+        /// Arrays are used pass values
+        /// Holds Calories Values for ingredients
+        /// Holds Sum Matching each calorieData array sum of values
+        /// Compares if values match to check if Sum works correctly
         /// </summary>
         [TestMethod]
         public void TotalCaloriesCalculationTest()
@@ -51,7 +55,11 @@ namespace UnitTestApp
 
         //--------------------------------------------------------------------------------------------------//
         /// <summary>
-        /// 
+        /// Method receives Calories values and passes it to Object Recipe
+        /// Obj Recipe is stored at global recipeArray List 
+        /// List is passed to sumCalories Method for values to be summed
+        /// Method returns total Sum
+        /// Instance of RecipeClass Created
         /// </summary>
         /// <param name="DataArray"></param>
         public int ReturnSumOfArray(int[] CaloriesData, int Num)
@@ -69,7 +77,7 @@ namespace UnitTestApp
             var Ingredient9 = new IngredientsClass { IngredientCalories = CaloriesData[8] };
             var Ingredient10 = new IngredientsClass { IngredientCalories = CaloriesData[9] };
 
-            Recipe.IngredientsArray = new List<IngredientsClass> { Ingredient1, Ingredient2, 
+            Recipe.IngredientsArray = new List<IngredientsClass> { Ingredient1, Ingredient2,
                                                                    Ingredient3, Ingredient4,
                                                                    Ingredient5, Ingredient6,
                                                                    Ingredient7, Ingredient8,
